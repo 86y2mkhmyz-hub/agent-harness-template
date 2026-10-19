@@ -33,6 +33,7 @@ If your tool can't spawn subagents, take on that role yourself, do the task, the
 
 | Skill | Use when | File |
 |---|---|---|
+| `feature-planner` | User describes a new app feature, screen or idea, or wants a mockup — turns it into a plan + mockups to approve before building | `skills/feature-planner/SKILL.md` |
 | `doc-creator` (example) | User wants a branded PDF: proposal, letter, invoice, report | `skills/doc-creator/SKILL.md` |
 | `ai-keyword-search-volume-analyzer` (example) | AI/LLM search volume for a keyword list (needs DataForSEO MCP) | `skills/ai-keyword-search-volume-analyzer/SKILL.md` |
 
