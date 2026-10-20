@@ -183,8 +183,9 @@ svg.dim .grp:not(.hot){opacity:.38}
 .sheet-ctl .segctl button{font-size:13px}
 .ctl-back{position:absolute;left:8px;top:26px;z-index:3;width:44px;height:44px;border:none;background:none;color:var(--accent);display:grid;place-items:center;cursor:pointer}
 .sheet-body > .eyebrow:first-child{position:sticky;top:0;z-index:2;background:var(--surface);min-height:44px;display:flex;align-items:center;margin:0 -22px;padding:0 200px 0 22px}
-.sheet-body > .eyebrow:first-child::after{content:"";position:absolute;left:0;right:0;top:100%;height:20px;background:linear-gradient(var(--surface) 45%,transparent)}
+.sheet-body > .eyebrow:first-child::after{content:"";position:absolute;left:0;right:0;top:100%;height:20px;opacity:0;transition:opacity .15s;background:linear-gradient(var(--surface) 45%,transparent)}
 /* Back arrow: a plain chevron to the left of the eyebrow word, same colour */
+.sheet-body.scrolled > .eyebrow:first-child::after{opacity:1}
 .phone:has(#backBtn2:not([hidden])) .sheet-body > .eyebrow:first-child{padding-left:44px}
 .grabzone{flex:none;height:26px;display:flex;justify-content:center;padding-top:8px;cursor:grab;touch-action:none}
 .grab{width:38px;height:5px;border-radius:3px;background:var(--faint);opacity:.7}
@@ -1120,6 +1121,8 @@ $('tabBody').onclick = () => { setTab('tabBody'); reset(); };
 $('tabProfile').onclick = showProfile;
 
 addEventListener('resize', () => relabel(150));
+// The fade under the fixed strip only shows once the panel has scrolled
+sheet.addEventListener('scroll', () => sheet.classList.toggle('scrolled', sheet.scrollTop > 2));
 { const l = new URLSearchParams(location.search).get('layout'); if (['std','desc','tendon'].includes(l)){ document.body.dataset.lay = l; document.querySelectorAll('[data-seg="lay"] button').forEach(b => b.classList.toggle('on', b.dataset.v === l)); } }
 buildAll(); draw();
 </script>
