@@ -1,0 +1,1250 @@
+<title>Fibrs Muscle Map</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: notes column beside an iPhone-sized frame. Body diagram on top, bottom sheet for detail, Profile as its own screen. */
+:root{
+  color-scheme:dark;
+  --bg:#0A0A0C; --phone:#0E0E11; --frame:#24242B; --surface:#16161B; --surface2:#1E1E25; --line:#2A2A33;
+  --text:#F4F1EA; --muted:#9A968E; --faint:#5E5B56; --body-text:#CFCAC0;
+  --accent:#C9A96E; --accent-soft:#6F5E40; --accent-tint:rgba(201,169,110,.10); --on-accent:#1A1408;
+  --skin:#1E1E25; --skin-line:#3A3A46; --hair:#2C2C34; --bone:#4A4842;
+  --muscle:#3A3A45; --muscle-line:#646472; --fibre:#50505D; --hover:#4A4A57;
+  --fibre-on:#E4CE9F; --fibre-soft:#8C7853; --sib:#4A4232; --fibre-sib:#5B513E;
+  --tendon:#56534B; --tendon-line:#635F56; --tendon-on:#EDE4CF; --on-tendon:#1A1408;
+  --heat1:#52462F; --heat2:#8C7448; --heat3:#C9A96E;
+}
+@media (prefers-color-scheme: light){ :root:not([data-theme="dark"]){
+  color-scheme:light;
+  --bg:#ECE6DA; --phone:#FAF7F0; --frame:#DCD3C2; --surface:#F3EEE3; --surface2:#EAE3D5; --line:#DDD4C3;
+  --text:#18201C; --muted:#6B675E; --faint:#A39D90; --body-text:#3C3F3A;
+  --accent:#0F5D46; --accent-soft:#9CC3B3; --accent-tint:rgba(15,93,70,.08); --on-accent:#FFFFFF;
+  --skin:#EEE6D8; --skin-line:#D8CCB8; --hair:#D3C5AE; --bone:#F6F1E8;
+  --muscle:#DDC8B0; --muscle-line:#BFA787; --fibre:#C9B194; --hover:#D3BC9F;
+  --fibre-on:#3F8068; --fibre-soft:#82B09E; --sib:#C3D8CE; --fibre-sib:#ABC8BB;
+  --tendon:#FBF8F2; --tendon-line:#DDD1BC; --tendon-on:#B88A3E; --on-tendon:#FFFFFF;
+  --heat1:#D4E5DC; --heat2:#7FB09B; --heat3:#0F5D46;
+}}
+:root[data-theme="light"]{
+  color-scheme:light;
+  --bg:#ECE6DA; --phone:#FAF7F0; --frame:#DCD3C2; --surface:#F3EEE3; --surface2:#EAE3D5; --line:#DDD4C3;
+  --text:#18201C; --muted:#6B675E; --faint:#A39D90; --body-text:#3C3F3A;
+  --accent:#0F5D46; --accent-soft:#9CC3B3; --accent-tint:rgba(15,93,70,.08); --on-accent:#FFFFFF;
+  --skin:#EEE6D8; --skin-line:#D8CCB8; --hair:#D3C5AE; --bone:#F6F1E8;
+  --muscle:#DDC8B0; --muscle-line:#BFA787; --fibre:#C9B194; --hover:#D3BC9F;
+  --fibre-on:#3F8068; --fibre-soft:#82B09E; --sib:#C3D8CE; --fibre-sib:#ABC8BB;
+  --tendon:#FBF8F2; --tendon-line:#DDD1BC; --tendon-on:#B88A3E; --on-tendon:#FFFFFF;
+  --heat1:#D4E5DC; --heat2:#7FB09B; --heat3:#0F5D46;
+}
+/* The Appearance setting in Profile overrides the automatic choice */
+body[data-pal="gold"]{
+  color-scheme:dark;
+  --bg:#0A0A0C; --phone:#0E0E11; --frame:#24242B; --surface:#16161B; --surface2:#1E1E25; --line:#2A2A33;
+  --text:#F4F1EA; --muted:#9A968E; --faint:#5E5B56; --body-text:#CFCAC0;
+  --accent:#C9A96E; --accent-soft:#6F5E40; --accent-tint:rgba(201,169,110,.10); --on-accent:#1A1408;
+  --skin:#1E1E25; --skin-line:#3A3A46; --hair:#2C2C34; --bone:#4A4842;
+  --muscle:#3A3A45; --muscle-line:#646472; --fibre:#50505D; --hover:#4A4A57;
+  --fibre-on:#E4CE9F; --fibre-soft:#8C7853; --sib:#4A4232; --fibre-sib:#5B513E;
+  --tendon:#56534B; --tendon-line:#635F56; --tendon-on:#EDE4CF; --on-tendon:#1A1408;
+  --heat1:#52462F; --heat2:#8C7448; --heat3:#C9A96E;
+}
+body[data-pal="emerald"]{
+  color-scheme:light;
+  --bg:#ECE6DA; --phone:#FAF7F0; --frame:#DCD3C2; --surface:#F3EEE3; --surface2:#EAE3D5; --line:#DDD4C3;
+  --text:#18201C; --muted:#6B675E; --faint:#A39D90; --body-text:#3C3F3A;
+  --accent:#0F5D46; --accent-soft:#9CC3B3; --accent-tint:rgba(15,93,70,.08); --on-accent:#FFFFFF;
+  --skin:#EEE6D8; --skin-line:#D8CCB8; --hair:#D3C5AE; --bone:#F6F1E8;
+  --muscle:#DDC8B0; --muscle-line:#BFA787; --fibre:#C9B194; --hover:#D3BC9F;
+  --fibre-on:#3F8068; --fibre-soft:#82B09E; --sib:#C3D8CE; --fibre-sib:#ABC8BB;
+  --tendon:#FBF8F2; --tendon-line:#DDD1BC; --tendon-on:#B88A3E; --on-tendon:#FFFFFF;
+  --heat1:#D4E5DC; --heat2:#7FB09B; --heat3:#0F5D46;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,sans-serif;min-height:100%;min-height:100dvh;display:flex;padding-block:24px;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));transition:background .4s}
+button{font-family:inherit}
+.wrap{display:flex;gap:40px;align-items:center;max-width:1000px;margin:auto}
+.notes{max-width:310px;color:var(--muted);font-size:14px;line-height:1.6}
+.notes h1{color:var(--text);font-size:22px;font-weight:600;margin-bottom:12px;letter-spacing:-.3px;text-wrap:balance}
+.notes ol{padding-left:18px;margin:12px 0}
+.notes li{margin-bottom:8px}
+.notes b{color:var(--accent);font-weight:600}
+.notes .warn{border-left:2px solid var(--accent);padding:8px 12px;background:var(--surface);border-radius:6px;font-size:13px;margin-top:16px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (max-width:820px){.wrap{flex-direction:column-reverse;gap:24px;width:100%}.notes{max-width:390px}}
+
+.phone{width:390px;max-width:100%;height:844px;max-height:calc(100dvh - 48px);min-height:600px;background:var(--phone);border-radius:48px;border:1px solid var(--frame);box-shadow:0 40px 120px rgba(0,0,0,.35);position:relative;overflow:hidden;display:flex;flex-direction:column;transition:background .4s}
+.status{position:absolute;top:0;left:0;right:0;z-index:8;pointer-events:none;height:48px;display:flex;justify-content:space-between;align-items:center;padding:8px 32px 0;font-size:15px;font-weight:600;text-shadow:0 0 6px var(--phone),0 0 2px var(--phone)}
+.topfade{position:absolute;top:0;left:0;right:0;height:58px;z-index:7;pointer-events:none;background:linear-gradient(to bottom,var(--phone) 45%,color-mix(in srgb,var(--phone) 70%,transparent) 70%,transparent)}
+.botfade{display:none;position:absolute;left:0;right:0;bottom:0;height:120px;z-index:5;pointer-events:none;background:linear-gradient(to bottom,transparent,color-mix(in srgb,var(--phone) 80%,transparent) 45%,var(--phone) 72%)}
+.phone:has(#profile:not([hidden])) .botfade{display:block}
+.island{width:110px;height:32px;background:#000;border-radius:20px;position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:9}
+header{padding:56px 22px 0;flex:none}
+.brand{display:flex;justify-content:space-between;align-items:center;height:36px}
+.logo{font-size:13px;letter-spacing:5px;font-weight:600;color:var(--accent)}
+.avatar{position:relative;width:36px;height:36px;border-radius:50%;background:var(--surface2);border:1px solid var(--line);display:grid;place-items:center;font-size:12px;color:var(--muted);cursor:pointer}
+.hello{max-height:60px;overflow:hidden;font-size:26px;font-weight:600;letter-spacing:-.5px;margin:10px 0 14px;transition:all .4s}
+.hello span{color:var(--muted);font-weight:400}
+.phone.open .hello{max-height:0;margin:4px 0 4px;opacity:0}
+.phone.open:not(.plan):not(:has(#q:focus)) header,.phone.open .toolbar{display:none}
+
+.search{position:relative}
+.search input{width:100%;height:46px;border-radius:14px;border:1px solid var(--line);background:var(--surface);color:var(--text);font-size:16px;padding:0 44px 0 42px;outline:none;transition:border-color .2s;font-family:inherit}
+.search input:focus{border-color:var(--accent)}
+.search input::placeholder{color:var(--faint)}
+.search svg{position:absolute;left:14px;top:14px;color:var(--faint)}
+.search .clear{position:absolute;right:9px;top:9px;width:28px;height:28px;border-radius:50%;border:none;background:var(--surface2);color:var(--muted);font-size:14px;cursor:pointer}
+.chips{display:flex;gap:8px;margin-top:5px;padding:5px 22px 5px 0;margin-right:-22px;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(to right,#000 82%,transparent);mask-image:linear-gradient(to right,#000 82%,transparent)}
+.chips::-webkit-scrollbar{display:none}
+.chip{position:relative;flex:none;height:36px;padding:0 16px;border-radius:18px;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:13px;cursor:pointer;transition:all .2s}
+.chip:hover{color:var(--text);border-color:var(--faint)}
+.chip.on{background:var(--accent);color:var(--on-accent);border-color:var(--accent);font-weight:600}
+/* Invisible tap areas: small controls still get a full 44pt target */
+.avatar::after,.search .clear::after,.pill button::after,.seg button::after,.segctl button::after{content:"";position:absolute;inset:-8px}
+.add::after{content:"";position:absolute;inset:-2px}
+.chip::after{content:"";position:absolute;inset:-4px}
+
+.stage{flex:1;min-height:0;position:relative;display:flex;flex-direction:column;overflow:hidden}
+.phone:not(.open) .stage{padding-bottom:132px;padding-top:6px}
+.phone:not(.open) .hint{bottom:94px}
+
+.stage > svg{flex:1;min-height:0;width:100%;display:block}
+.toolbar{position:absolute;top:4px;right:14px;height:44px;display:flex;align-items:center;z-index:2}
+.toolbar .segctl{width:136px}
+.segctl{display:flex;width:200px;height:40px;background:var(--surface2);border-radius:10px;padding:2px}
+.segctl button{position:relative;flex:1;border:none;background:transparent;color:var(--muted);font-size:14px;font-weight:600;border-radius:8px;cursor:pointer;transition:all .2s}
+.segctl button.on{background:var(--phone);color:var(--text);box-shadow:0 1px 4px rgba(0,0,0,.2)}
+/* With a back button showing, the switch moves right so the two never collide */
+.toolbar:has(.back-btn:not([hidden])){justify-content:flex-end}
+.back-btn{position:absolute;left:0;top:0;height:44px;min-width:44px;padding:0 8px 0 4px;border:none;background:none;color:var(--accent);font-size:15px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:5px;max-width:calc(100% - 200px);white-space:nowrap}
+.back-btn span{overflow:hidden;text-overflow:ellipsis}
+.hint{position:absolute;bottom:14px;font-size:13px !important;color:var(--muted) !important;left:50%;transform:translateX(-50%);white-space:nowrap;padding:6px 12px;border-radius:12px;background:color-mix(in srgb,var(--phone) 85%,transparent);text-align:center;color:var(--faint);font-size:12px;letter-spacing:.3px;pointer-events:none;transition:opacity .3s}
+.legend{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:14px;font-size:12px;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:8px 14px;white-space:nowrap;z-index:2;box-shadow:0 6px 20px rgba(0,0,0,.12)}
+.legend i,.pill i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-2px}
+/* Swatches match the body: solid = main, stripes = secondary. Never colour alone. */
+.sw-solid{background:var(--accent)}
+.sw-hatch{background:repeating-linear-gradient(45deg,var(--accent) 0 1.6px,var(--sib) 1.6px 4px);box-shadow:inset 0 0 0 1px var(--accent-soft)}
+.sw-tendon{background:var(--tendon-on)}
+.pill{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);max-width:92%;display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:7px 8px 7px 12px;font-size:12px;box-shadow:0 6px 20px rgba(0,0,0,.12);z-index:2}
+.pill b{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.pill span{color:var(--muted);white-space:nowrap}
+.pill button{position:relative;border:none;background:var(--surface2);color:var(--muted);width:36px;height:36px;border-radius:50%;cursor:pointer;flex:none;font-size:15px}
+.pill{flex-direction:column;align-items:stretch;gap:4px;padding:6px 6px 10px 14px;width:max-content}
+.pill-top{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px}
+/* With the panel up, the panel already names the workout: the key shows only the patterns */
+.phone:not(.mini) .pill-top{display:none}
+.phone:not(.mini) .pill{padding:9px 14px}
+.pill-key{display:flex;gap:12px;flex-wrap:wrap;padding-right:8px}
+.sw-deep{background:var(--sib);border:1.5px dashed var(--accent);box-sizing:border-box}
+/* Name labels pointing at the main muscles */
+.mname{position:absolute;left:50%;bottom:70px;transform:translate(-50%,6px);z-index:3;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:8px 14px;font-size:13.5px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .35s,transform .35s;box-shadow:0 6px 20px rgba(0,0,0,.18)}
+.mname.show{opacity:1;transform:translate(-50%,0)}
+.mname b{font-weight:600}
+.mname span{color:var(--muted)}
+.mname em{font-style:normal;color:var(--accent);font-weight:600}
+.labels{position:absolute;inset:0;pointer-events:none;z-index:1;transition:opacity .2s}
+.labels svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.labels line{stroke:var(--text);stroke-width:1;opacity:.5}
+.labels circle{fill:var(--text);stroke:var(--phone);stroke-width:1.5}
+.lbl{position:absolute;font-size:12px;font-weight:600;color:var(--text);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:4px 9px;white-space:nowrap;transform:translateY(-50%);box-shadow:0 2px 8px rgba(0,0,0,.14)}
+
+/* Anatomy */
+.skin{fill:var(--skin);stroke:var(--skin-line);stroke-width:.5;transition:fill .4s}
+.hair{fill:var(--hair)}
+.bone{fill:var(--bone);stroke:var(--skin-line);stroke-width:.3}
+.contour{fill:none;stroke:var(--muscle-line);stroke-width:.7;stroke-linecap:round;pointer-events:none;opacity:.9}
+.ol{fill:none;stroke:var(--muscle-line);stroke-width:1.1;stroke-linejoin:round}
+.pf{fill:var(--muscle);cursor:pointer;transition:fill .25s}
+.fib{fill:none;stroke:var(--fibre);stroke-width:.32;pointer-events:none;transition:stroke .25s}
+.band{fill:none;stroke:var(--tendon);stroke-width:1.1;stroke-linecap:round;pointer-events:none}
+.td{fill:var(--tendon);stroke:var(--tendon-line);stroke-width:.25;cursor:pointer;transition:fill .25s}
+.pf.tdp{fill:var(--tendon)}
+.fib.tdp{stroke:var(--tendon-line)}
+.grp{transition:opacity .3s}
+.grp.hov .pf:not(.tdp):not(.on):not(.soft):not(.sib):not(.deep){fill:var(--hover)}
+.pf.on{fill:var(--accent)} .fib.on{stroke:var(--fibre-on)}
+.pf.soft{fill:url(#hatch)} .fib.soft{stroke:var(--fibre-soft);stroke-opacity:.4}
+.hz-bg{fill:var(--sib)} .hz-ln{stroke:var(--accent);stroke-width:1.15}
+.hzt-bg{fill:var(--tendon)} .hzt-ln{stroke:var(--tendon-on);stroke-width:1.15}
+.pf.sib{fill:var(--sib)} .fib.sib{stroke:var(--fibre-sib)}
+.pf.deep{fill:var(--sib);stroke:var(--accent);stroke-width:.9;stroke-dasharray:2 1.4}
+.fib.deep{stroke:var(--fibre-sib)}
+.pf.tdp.on{fill:var(--tendon-on)} .pf.tdp.soft{fill:url(#hatchT)}
+.grp.hot .td{fill:var(--tendon-on)}
+.grp.hot .band{stroke:var(--tendon-on)}
+.grp.open .pf:not(.deep){stroke:var(--phone);stroke-width:.6}
+svg.dim .grp:not(.hot){opacity:.38}
+svg.mini .pf{cursor:pointer}
+svg.mini .grp.pick .pf:not(.tdp){stroke:var(--text);stroke-width:1}
+svg.mini .grp.h1 .pf:not(.tdp){fill:var(--heat1)}
+svg.mini .grp.h2 .pf:not(.tdp){fill:var(--heat2)}
+svg.mini .grp.h3 .pf:not(.tdp){fill:var(--heat3)}
+svg.mini .fib{stroke-opacity:.5}
+
+/* Sheet */
+.sheet{position:relative;flex:none;height:0;background:var(--surface);border-radius:26px 26px 0 0;border-top:1px solid var(--line);overflow:hidden;transition:height .45s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column}
+.phone.open .sheet{height:calc(34% + 90px)}
+.phone.open.full .sheet{height:calc(100% - 64px)}
+/* Lowest position: only the top strip shows above the tab bar */
+.phone.open.mini .sheet{height:172px}
+.sheet.drag{transition:none}
+.sheet::after{content:"";position:absolute;left:0;right:0;bottom:0;height:120px;pointer-events:none;z-index:2;background:linear-gradient(to bottom,transparent,color-mix(in srgb,var(--surface) 80%,transparent) 45%,var(--surface) 72%)}
+.sheet-ctl{position:absolute;top:30px;right:16px;display:flex;align-items:center;gap:8px;z-index:4}
+.sheet-ctl .segctl{width:150px;height:36px}
+.sheet-ctl .segctl button{font-size:13px}
+.ctl-back{position:relative;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--surface2);color:var(--text);display:grid;place-items:center;cursor:pointer;flex:none}
+.ctl-back::after{content:"";position:absolute;inset:-4px}
+.sheet-body > .eyebrow:first-child{position:sticky;top:0;z-index:2;background:var(--surface);min-height:44px;display:flex;align-items:center;margin:0 -22px;padding:0 200px 0 22px}
+.sheet-body > .eyebrow:first-child::after{content:"";position:absolute;left:0;right:0;top:100%;height:30px;opacity:0;transition:opacity .15s;background:linear-gradient(var(--surface) 55%,transparent)}
+/* Back arrow: a plain chevron to the left of the eyebrow word, same colour */
+.sheet-body.scrolled > .eyebrow:first-child::after{opacity:1}
+
+.grabzone{position:relative;z-index:3;flex:none;height:26px;display:flex;justify-content:center;padding-top:8px;cursor:grab;touch-action:none}
+/* Invisible grab area: 44pt tall, sits under the back button and switch so they still win */
+.grabzone::after{content:"";position:absolute;left:0;right:0;top:0;height:44px}
+.grab{width:56px;height:6px;border-radius:3px;background:var(--faint);opacity:.7}
+.sheet-body{overflow-y:auto;padding:0 22px 110px;flex:1;scrollbar-width:none}
+.sheet-body::-webkit-scrollbar{display:none}
+.eyebrow{font-size:11px;letter-spacing:2px;color:var(--accent);text-transform:uppercase;font-weight:600}
+.title{font-size:24px;font-weight:600;letter-spacing:-.4px;margin-top:4px}
+.latin{font-size:13px;color:var(--muted);font-style:italic;margin-top:2px}
+.about{font-size:14px;line-height:1.55;color:var(--body-text);margin-top:10px}
+.tendon-note{display:flex;gap:10px;align-items:flex-start;margin-top:12px;background:var(--surface2);border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.45;color:var(--body-text)}
+.tendon-note b{color:var(--tendon-on);font-weight:600}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--tendon-on);flex:none;margin-top:5px}
+.heads{display:flex;gap:8px;margin:0 -22px;padding:0 22px 2px;overflow-x:auto;scrollbar-width:none}
+.heads::-webkit-scrollbar{display:none}
+.head{flex:none;min-width:92px;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:12px;padding:9px 12px;cursor:pointer;text-align:left;transition:all .2s}
+.head b{display:block;font-size:13px;color:var(--text);font-weight:600;white-space:nowrap}
+.head small{font-size:10.5px;white-space:nowrap}
+.head em{font-style:normal;font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--accent);margin-left:5px}
+.head.on{border-color:var(--accent);background:var(--accent-tint)}
+.head.on b{color:var(--accent)}
+/* Name with description or tendon note beside it */
+.side{display:grid;grid-template-columns:minmax(0,max-content) minmax(0,1fr);gap:18px;align-items:start}
+.side > div:first-child{max-width:160px}
+.side .about{margin-top:20px;font-size:13px;line-height:1.45}
+.side .tendon-note{margin-top:18px;font-size:12.5px;padding:9px 11px}
+.lay{margin-top:18px;font-size:13px;color:var(--muted)}
+.lay .seg{margin-top:8px;display:inline-flex}
+.part{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.part-name{font-size:17px;font-weight:600}
+h3{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:600;margin:20px 0 10px}
+.ex{background:var(--surface2);border:1px solid transparent;border-radius:14px;padding:14px;margin-bottom:10px;display:grid;grid-template-columns:1fr auto;gap:4px 12px;cursor:pointer;transition:border-color .2s}
+.ex.sel{border-color:var(--accent)}
+.ex-name{font-size:15px;font-weight:600}
+.kit{display:inline-flex;align-items:center;gap:4px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--body-text);border:1px solid var(--line);border-radius:7px;padding:1px 7px;vertical-align:1px}
+h3:has(.kit-wrap){display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.kit-wrap{position:relative;flex:none}
+.kit-btn{position:relative;height:32px;padding:0 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface2);color:var(--text);font:600 12.5px/1 inherit;font-family:inherit;letter-spacing:0;text-transform:none;cursor:pointer}
+.kit-btn::after{content:"";position:absolute;inset:-6px}
+.kit-menu{position:absolute;right:0;top:calc(100% + 6px);z-index:5;min-width:180px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:4px;box-shadow:0 12px 30px rgba(0,0,0,.3);display:flex;flex-direction:column}
+.kit-menu button{height:44px;border:none;background:none;color:var(--text);font:500 15px inherit;font-family:inherit;letter-spacing:0;text-transform:none;text-align:left;padding:0 12px;border-radius:10px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.kit-menu button:hover{background:var(--surface2)}
+.kit-menu b{color:var(--accent)}
+.kit-note{font-size:12.5px;color:var(--muted);margin:-4px 0 10px;line-height:1.45}
+.ex-dose{font-size:12px;color:var(--accent);margin-top:2px;font-variant-numeric:tabular-nums}
+.ex-why{grid-column:1/-1;font-size:13px;line-height:1.45;color:var(--body-text);margin-top:6px}
+.ex-src{grid-column:1/-1;font-size:11px;color:var(--muted);display:flex;gap:6px;align-items:center;margin-top:2px}
+.see{margin-left:auto;font-weight:600;color:var(--accent);white-space:nowrap}
+.add{position:relative;grid-row:1/3;grid-column:2;align-self:start;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--text);font-size:18px;cursor:pointer;transition:all .2s;line-height:1}
+.add.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.focus{display:flex;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.focus:last-child{border-bottom:none}
+.badge{flex:none;font-size:10px;font-weight:700;letter-spacing:1px;padding:4px 8px;border-radius:6px;text-transform:uppercase}
+.badge.key{background:var(--accent);color:var(--on-accent)}
+.badge.imp{background:transparent;border:1px solid var(--accent-soft);color:var(--accent)}
+.badge.tdn{background:var(--tendon-on);color:var(--on-tendon)}
+.focus-txt b{font-size:14px;font-weight:600;display:block}
+.focus-txt span{font-size:12.5px;color:var(--muted);line-height:1.4}
+.chev{margin-left:auto;color:var(--faint);font-size:18px}
+.empty{font-size:14px;color:var(--muted);line-height:1.6;margin-top:8px}
+.prog{border:1px solid var(--line);border-radius:18px;padding:16px;margin-top:16px;background:var(--phone)}
+.prog-name{font-size:18px;font-weight:600;margin-top:4px}
+.prog-meta{font-size:12.5px;color:var(--muted);margin-top:2px}
+.sess{margin-top:14px}
+.sess-name{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:4px}
+.row{display:flex;justify-content:space-between;align-items:center;min-height:44px;gap:12px;padding:9px 10px;margin:0 -10px;border-radius:10px;font-size:14px;cursor:pointer;border:1px solid transparent}
+.row:hover{background:var(--surface2)}
+.row.sel{border-color:var(--accent);background:var(--accent-tint)}
+.row-dose{font-size:12px;color:var(--accent);white-space:nowrap;font-variant-numeric:tabular-nums}
+.prog-note{font-size:12px;color:var(--muted);line-height:1.5;margin-top:12px}
+.cta{width:100%;margin-top:14px;height:46px;border-radius:14px;border:none;background:var(--accent);color:var(--on-accent);font-size:15px;font-weight:600;cursor:pointer}
+.cta.done{background:transparent;border:1px solid var(--accent);color:var(--accent)}
+
+/* Liquid glass: icons stay crisp, what scrolls behind is visible but blurred past reading */
+.tabbar{position:absolute;left:14px;right:14px;bottom:18px;height:64px;border-radius:32px;display:flex;justify-content:space-around;align-items:center;z-index:6;background:color-mix(in srgb,var(--surface) 66%,transparent);-webkit-backdrop-filter:blur(12px) saturate(170%);backdrop-filter:blur(12px) saturate(170%);border:1px solid color-mix(in srgb,var(--text) 12%,transparent);box-shadow:inset 0 1px 0 color-mix(in srgb,#fff 18%,transparent),0 10px 30px rgba(0,0,0,.28)}
+.tab{background:none;border:none;color:var(--text);opacity:.72;font-size:11px;font-weight:500;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;position:relative;width:84px;height:56px;border-radius:28px}
+.tab.on{opacity:1;background:color-mix(in srgb,var(--accent) 16%,transparent)}
+.tab.on{color:var(--accent)}
+.count{position:absolute;top:-4px;right:14px;background:var(--accent);color:var(--on-accent);font-size:10px;font-weight:700;min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+.toast{position:absolute;bottom:100px;left:50%;transform:translate(-50%,20px);background:var(--text);color:var(--phone);font-size:13px;font-weight:600;padding:10px 16px;border-radius:20px;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap;z-index:8}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* Profile */
+.screen{position:absolute;top:0;left:0;right:0;bottom:0;background:var(--phone);overflow-y:auto;padding:56px 22px 110px;z-index:3;scrollbar-width:none}
+.screen::-webkit-scrollbar{display:none}
+.p-top{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.p-title{font-size:26px;font-weight:600;letter-spacing:-.5px}
+.p-card{margin-top:2px}
+.p-avatar{position:relative;width:64px;height:64px;border-radius:50%;border:none;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font-size:21px;font-weight:600;flex:none;cursor:pointer;font-family:inherit}
+.p-cam{position:absolute;right:-2px;bottom:-2px;width:24px;height:24px;border-radius:50%;background:var(--surface2);color:var(--text);border:2px solid var(--phone);display:grid;place-items:center}
+.p-name{font-size:18px;font-weight:600}
+.p-sub{font-size:13px;color:var(--muted);margin-top:2px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}
+.stat{background:var(--surface);border-radius:14px;padding:12px}
+.stat b{display:block;font-size:22px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.5px}
+.stat span{font-size:11.5px;color:var(--muted);line-height:1.3;display:block;margin-top:2px}
+.panel{background:var(--surface);border-radius:18px;padding:16px;margin-top:12px}
+.panel h4{font-size:15px;font-weight:600}
+.panel .sub{font-size:12.5px;color:var(--muted);margin-top:2px;line-height:1.45}
+.minis{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.minis figure{display:flex;flex-direction:column;align-items:center}
+.minis svg{width:100%;height:210px}
+.minis figcaption{font-size:10.5px;letter-spacing:1.2px;color:var(--muted);font-weight:600;margin-top:4px}
+.readout{font-size:13.5px;text-align:center;color:var(--muted);margin-top:8px;min-height:20px}
+.readout b{color:var(--text);font-weight:600}
+.scale{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);margin-top:10px;flex-wrap:wrap}
+.scale i{width:22px;height:8px;border-radius:3px;display:inline-block}
+.insight{font-size:13px;line-height:1.5;color:var(--body-text);margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+.set-list{background:var(--surface);border-radius:18px;margin-top:12px;overflow:hidden}
+.set{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 16px;border-bottom:1px solid var(--line);font-size:14.5px;min-height:52px}
+.set:last-child{border-bottom:none}
+.set .val{color:var(--muted);font-size:13.5px;display:flex;align-items:center;gap:6px;text-align:right}
+.set-col{flex-direction:column;align-items:stretch;gap:10px;padding-bottom:14px}
+.set-col .seg button{flex:1}
+.set-sub{font-size:12.5px;color:var(--muted);margin-top:2px}
+.seg{display:flex;background:var(--surface2);border-radius:10px;padding:2px}
+.seg button{position:relative;border:none;background:transparent;color:var(--muted);font-size:13px;font-weight:600;padding:8px 12px;border-radius:8px;cursor:pointer}
+.seg button.on{background:var(--phone);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.ok{color:var(--accent);font-weight:600}
+.p-foot{font-size:11.5px;color:var(--faint);text-align:center;margin-top:18px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <div class="notes">
+    <h1>Fibrs muscle map: mockup v11</h1>
+    <p>What's new in v11: after picking a workout, tap any highlighted muscle to see its exact name. Switch Equipment, Hybrid or Bodyweight right from the exercise heading.</p>
+    <ol>
+      <li>Tap a muscle. The search bar steps aside and the panel opens halfway, so the body stays large. <b>Drag the handle</b> (or tap it) to open the panel fully.</li>
+      <li>Tap an <b>exercise card</b>. Main muscles turn <b>solid</b> and get a name label. Muscles that also work get <b>stripes</b>.</li>
+      <li>Search <b>football</b>. The body zooms in on the areas that matter for that sport.</li>
+      <li>Open <b>Profile</b> and tap any muscle on the weekly map to see its set count. Male and Female now live here.</li>
+    </ol>
+    <div class="warn">Sample content only. Every recommendation names its study, but a qualified coach or physiotherapist should review it all before launch. The drawing is an illustration, not a medical reference.</div>
+  </div>
+
+  <div class="phone" id="phone">
+    <div class="island"></div>
+    <div class="topfade"></div>
+    <div class="botfade"></div>
+    <div class="status"><span>9:41</span><span>●●● ▮</span></div>
+    <header>
+      <div class="brand"><div class="logo">FIBRS</div><div class="avatar" id="avatarBtn" role="button" tabindex="0" aria-label="Open profile">AK</div></div>
+      <div class="hello">What are we <span>training today?</span></div>
+      <div class="search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" placeholder="Search a sport or muscle" autocomplete="off">
+        <button class="clear" id="clear" aria-label="Clear search" hidden>✕</button>
+      </div>
+      <div class="chips" id="chips"></div>
+    </header>
+
+    <div class="stage">
+      <div class="toolbar">
+        <button class="back-btn" id="backBtn" hidden><svg width="11" height="19" viewBox="0 0 11 19" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2 2 9.5 9 17"/></svg><span id="backTxt"></span></button>
+        <div class="segctl" role="group" aria-label="Body view"><button id="vFront" class="on">Front</button><button id="vBack">Back</button></div>
+      </div>
+      <svg id="body" viewBox="0 0 200 440" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Human muscle diagram"></svg>
+      <div class="labels" id="labels"></div>
+      <div class="mname" id="mname" aria-live="polite"></div>
+      <div class="hint" id="hint">Tap any muscle to explore</div>
+      <div class="legend" id="legend" hidden><span><i class="sw-solid"></i>Key</span><span><i class="sw-hatch"></i>Important</span><span><i class="sw-tendon"></i>Tendon</span></div>
+      <div class="pill" id="pill" hidden><div class="pill-top"><b id="pillName"></b><button id="pillX" aria-label="Stop showing muscles">✕</button></div><div class="pill-key"><span><i class="sw-solid"></i>Main</span><span><i class="sw-hatch"></i>Also works</span><span id="keyDeep"><i class="sw-deep"></i>Works underneath</span></div></div>
+    </div>
+
+    <div class="sheet" id="sheetBox"><div class="grabzone" id="grab" role="button" tabindex="0" aria-label="Expand or shrink the panel"><div class="grab"></div></div><div class="sheet-ctl" id="sheetCtl"><button class="ctl-back" id="backBtn2" aria-label="Go back" hidden><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2 2 8l6 6"/></svg></button></div><div class="sheet-body" id="sheet"></div></div>
+
+    <section class="screen" id="profile" hidden></section>
+
+    <nav class="tabbar">
+      <button class="tab on" id="tabBody"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="4.5" r="2.5"/><path d="M6 9h12M12 9v6m0 0-3 6m3-6 3 6"/></svg>Body</button>
+      <button class="tab" id="tabPlan"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="17" rx="3"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>My plan<span class="count" id="count" hidden>0</span></button>
+      <button class="tab" id="tabProfile"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Profile</button>
+    </nav>
+    <div class="toast" id="toast"></div>
+  </div>
+</div>
+
+<script>
+// =====================================================================
+// 1. ANATOMY GEOMETRY
+// Each muscle part is drawn from its origin edge (o) to its insertion edge (i),
+// with one control point per side (c). Fibres are drawn between those edges,
+// so they follow the real direction the muscle pulls. Coordinates are for the
+// left half of the drawing (x < 100); the right half is a mirror image.
+// =====================================================================
+const FULL_SKIN = [
+  'M90,44 Q91,56 85,64 L115,64 Q109,56 110,44 Z',
+  'M100,8 C111,8 117,18 117,30 C117,42 110,50 100,50 C90,50 83,42 83,30 C83,18 89,8 100,8 Z',
+];
+const HAIR = 'M82,32 Q79,6 100,5 Q121,6 118,32 Q121,50 114,58 Q109,52 107,47 L93,47 Q91,52 86,58 Q79,50 82,32 Z';
+const HALF_SKIN = [
+  {d:'M100,61 L86,62 Q72,62 64,67 Q58,74 59,88 Q61,110 66,130 Q68,150 70,165 Q72,182 71,196 Q69,212 66,226 Q80,236 100,240 Z'},
+  {d:'M64,66 Q50,66 46,82 Q43,96 46,112 Q44,128 47,148 Q42,170 44,195 Q45,212 47,228 L56,228 Q58,212 60,195 Q63,172 62,152 Q66,130 65,112 Q66,96 64,84 Z', arm:1},
+  {d:'M47,228 L56,228 Q60,240 57,252 Q52,258 47,254 Q43,244 47,228 Z', arm:1},
+  {d:'M66,224 Q61,250 62,272 Q63,298 72,322 Q68,346 70,362 Q73,390 77,410 L90,412 Q90,390 91,362 Q93,345 92,326 Q97,300 98,272 Q99,250 99,238 Z'},
+  {d:'M77,410 L90,412 Q95,420 92,425 L73,425 Q71,417 77,410 Z'},
+];
+const p = (id, o, i, c, x) => Object.assign({id, o, i, c}, x || {});
+const GEO = {
+  front: [
+    {g:'neck', parts:[p('scm',[86,40,89,38],[92,64,97,64],[87,52,92,50])]},
+    {bone:'M98,62.5 Q84,60.5 66,63.5 L66,66 Q84,63.5 98,65.5 Z'},
+    {g:'chest', parts:[
+      p('pec-mid',[99,69,99,108],[62,87,62,94],[81,76,79,113]),
+      p('pec-lower',[99,109,93,121],[62,95,62,98],[79,114,77,122]),
+      p('pec-upper',[98,67,80,66],[62,86,61,80],[81,74,70,69])],
+      tendons:[{a:[61.5,81,62.5,97], to:[58,89], w:9}]},
+    {g:'biceps', arm:1, parts:[
+      p('bic-short',[58,93,61,93],[56,144,58,143],[57,118,66,118]),
+      p('bic-long',[58,93,56,94],[56,144,55,143],[57,118,46,118])],
+      tendons:[{a:[56,94,61,93], to:[61,80], w:2.5},{a:[55,143,58,143], to:[57,157], w:2.5}]},
+    {g:'forearms', arm:1, parts:[
+      p('fa-flex',[58,153,62,152],[52,214,57,214],[54,180,65,178]),
+      p('brachioradialis',[51,136,47,138],[50,212,47.5,212],[55,172,42,172])],
+      tendons:[{a:[52,214,57,214], to:[54.5,229], w:5},{a:[47.5,212,50,212], to:[48.5,226], w:1.5}]},
+    {g:'delts', arm:1, parts:[
+      p('delt-front',[79,66,67,64],[57,110,55.5,111],[66,83,56,80]),
+      p('delt-side',[67,64,60,66],[55.5,111,54,111],[56,80,42,82])],
+      tendons:[{a:[54,111,57,110], to:[55,117], w:2}]},
+    {g:'obliques', parts:[p('ext-obl',[78,120,68,190],[86,148,85,210],[84,132,76,200])],
+      tendons:[{d:'M85,130 Q86,170 85,206 L91,228 Q87,200 87.5,150 Q87,135 86,124 Z'}]},
+    {g:'abs', parts:[p('rectus',[99,232,93,232],[99,120,85,122],[99,176,84,176],{bands:[.45,.63,.8]})]},
+    {g:'adductors', parts:[
+      p('gracilis',[99,238,97,236],[93,322,91,322],[98,282,95,280]),
+      p('add-long',[97,236,93,234],[88,288,86,282],[95,262,88,256])],
+      tendons:[{a:[91,322,93,322], to:[90,336], w:1.5}]},
+    {g:'quads', parts:[
+      p('vl',[72,232,66,230],[79,312,76,316],[70,270,60,276]),
+      p('vm',[88,276,93,272],[86,312,88,318],[87,295,96,300]),
+      p('rf',[76,214,79,214],[79,306,86,306],[68,262,92,262])],
+      tendons:[{a:[76,308,89,310], to:[83,316], w:8},{a:[76,214,79,214], to:[75,206], w:2}]},
+    {bone:'M83,316 C86,316 87.5,319 87.5,322 C87.5,326 85.5,328 83,328 C80.5,328 78.5,326 78.5,322 C78.5,319 80,316 83,316 Z'},
+    {g:'patellar', parts:[p('patellar',[80.5,327,85.5,327],[82,342,85,342],[81,334,86,334],{tendon:1})]},
+    {g:'tibialis', parts:[p('tibialis',[80,345,85,345],[88,398,89.5,398],[76,370,86,370])],
+      tendons:[{a:[88,398,89.5,398], to:[93,415], w:1.5}]},
+    {contour:'M98,91 Q92,104 81,106 Q71,105 66,97', female:1},
+  ],
+  back: [
+    {g:'cuff', parts:[
+      p('infra',[87,84,85,108],[63,75,63,80],[75,79,72,98]),
+      p('teres-minor',[84,109,81,114],[63,81,63,85],[72,99,70,108])],
+      tendons:[{a:[63,75,63,85], to:[60,80], w:6}]},
+    {g:'lats', parts:[
+      p('teres-major',[86,114,84,121],[63,90,63,95],[73,103,72,113]),
+      p('lat',[97,116,82,200],[63,97,63,103],[80,112,63,152])],
+      tendons:[{d:'M99,138 L92,140 L82,200 L88,208 L99,214 Z'},{a:[63,97,63,103], to:[60,99], w:5}]},
+    {g:'lowerback', parts:[
+      p('iliocost',[95,210,90,206],[94,118,88,124],[93,164,86,166]),
+      p('longis',[98,210,95,210],[98,118,94,118],[98,164,93,164])]},
+    {g:'traps', parts:[
+      p('traps-lo',[99,92,99,140],[87,80,89,82],[94,86,94,116]),
+      p('traps-mid',[99,64,99,92],[75,69,87,80],[88,67,94,86]),
+      p('traps-up',[99,46,99,64],[72,66,75,69],[89,56,88,67])]},
+    {g:'delts', arm:1, parts:[
+      p('delt-rear',[79,73,66,64],[57,110,55.5,111],[67,89,56,80]),
+      p('delt-side',[67,64,60,66],[55.5,111,54,111],[56,80,42,82])],
+      tendons:[{a:[54,111,57,110], to:[55,117], w:2}]},
+    {g:'triceps', arm:1, parts:[
+      p('tri-lat',[58,86,55,84],[56,138,53,138],[58,112,44,112]),
+      p('tri-long',[58,86,62,85],[56,138,60,138],[58,112,66,112])],
+      tendons:[{a:[53,138,60,138], to:[56.5,153], w:4}]},
+    {g:'forearms', arm:1, parts:[p('fa-ext',[46,154,60,154],[49,214,56,214],[42,182,62,182])],
+      tendons:[{a:[49,214,56,214], to:[52.5,227], w:5}]},
+    {g:'glutes', parts:[
+      p('gmed',[72,208,90,205],[67,226,70,230],[66,214,80,214]),
+      p('gmax',[90,207,99,244],[70,233,76,253],[78,212,90,258])],
+      tendons:[{d:'M70,233 L76,253 Q71,287 74,318 L70,318 Q64,285 70,233 Z'}]},
+    {g:'hamstrings', parts:[
+      p('sm',[91,255,89,254],[95,318,90,318],[99,288,90,288]),
+      p('bf',[86,252,84,254],[76,322,73,320],[82,288,65,288]),
+      p('st',[88,252,86,253],[89,318,85,318],[90,288,82,288])],
+      tendons:[{a:[73,320,76,322], to:[73,334], w:2},{a:[85,318,89,318], to:[90,337], w:1.2},{a:[90,318,95,318], to:[93,331], w:2}]},
+    {g:'calves', parts:[
+      p('soleus',[75,350,93,350],[83,392,87,392],[72,378,92,378]),
+      p('gas-lat',[80,326,75,328],[84,382,82,380],[84,350,67,352]),
+      p('gas-med',[84,326,90,328],[84,382,86,380],[84,350,95,354])]},
+    {g:'achilles', parts:[p('achilles',[82,380,88,380],[83.5,414,86.5,414],[83,397,88,397],{tendon:1})]},
+  ],
+};
+
+// =====================================================================
+// 2. CONTENT  (sample: to be reviewed by a qualified professional)
+// =====================================================================
+const STD = 'Standard strength practice';
+// Every exercise: dose, why, source, main muscles, muscles that also work
+const LIB = {
+  'Bench press':['3–4 × 6–10','Trains all three parts of the chest at once.',STD,['chest'],['delt-front','triceps']],
+  'Push-up':['3 × close to failure','Built muscle about as well as the bench press when the effort was similar.','Kikuchi & Nakazato, 2017',['chest'],['delt-front','triceps','rectus']],
+  'Incline bench press (30°)':['3–4 × 6–10','In a muscle-activity study, a 30° bench gave the highest upper-chest activation.','Rodríguez-Ridao et al., 2020',['pec-upper'],['pec-mid','delt-front','triceps']],
+  'Low-to-high cable fly':['3 × 10–15','The upward path matches the direction the upper chest fibres run.','Based on fibre direction',['pec-upper'],['delt-front']],
+  'Flat bench press':['3–4 × 6–10','A flat bench activated the middle fibres as much as or more than other angles.','Rodríguez-Ridao et al., 2020',['pec-mid'],['pec-upper','pec-lower','delt-front','triceps']],
+  'Flat dumbbell fly':['3 × 10–15','Trains the chest in a deep stretch. Training at long muscle lengths appears to help growth.','Wolf et al., 2023 (review)',['pec-mid'],['pec-upper','pec-lower']],
+  'Decline bench press':['3–4 × 6–10','Decline pressing activated the lower chest more than incline pressing.','Glass & Armstrong, 1997',['pec-lower'],['pec-mid','triceps']],
+  'Dips, leaning forward':['3 × 6–12','The downward pressing path lines up with the lower chest fibres.','Based on fibre direction',['pec-lower'],['triceps','delt-front']],
+  'Overhead press':['3–4 × 6–10','Trains the front and side of the shoulder, with the triceps helping.',STD,['delt-front','delt-side'],['triceps','traps-up']],
+  'Lateral raise':['3 × 12–20','The main exercise for the side of the shoulder, which gives it width.',STD,['delt-side'],['traps-up']],
+  'Front raise':['2–3 × 10–15','Isolates the front of the shoulder. Often not needed if you already press.',STD,['delt-front'],[]],
+  'Reverse fly':['3 × 12–20','Isolates the back of the shoulder.',STD,['delt-rear'],['traps-mid','rhomboids']],
+  'Face pull':['3 × 12–15','Trains the rear shoulder and the middle of the upper back together.',STD,['delt-rear','traps-mid'],['infra','traps-lo']],
+  'Incline dumbbell curl':['3 × 8–12','Your arm hangs behind you, so the long head starts stretched. Training at long lengths appears to help growth.','Wolf et al., 2023 (review)',['bic-long'],['bic-short','brachialis']],
+  'Preacher curl':['3 × 8–12','With your arm in front of your body, the short head does more of the work.','Based on muscle anatomy',['bic-short'],['bic-long','brachialis']],
+  'Barbell curl':['3 × 8–12','Lets you lift heavier loads with both biceps heads.',STD,['bic-long','bic-short'],['brachialis','brachioradialis']],
+  'Hammer curl':['3 × 10–12','A thumbs-up grip shifts work to the brachialis and brachioradialis.',STD,['brachialis','brachioradialis'],['bic-long']],
+  'Reverse curl':['3 × 10–15','Palms down puts the brachioradialis in its strongest position.',STD,['brachioradialis'],['brachialis','fa-ext']],
+  'Wrist curl':['3 × 12–20','Trains the forearm flexors that close your grip.',STD,['fa-flex'],[]],
+  'Reverse wrist curl':['3 × 12–20','Trains the extensors on the back of your forearm.',STD,['fa-ext'],[]],
+  'Eccentric wrist extension':['3 × 15, slow lowering','Added to usual care, it improved tennis elbow symptoms in a trial.','Tyler et al., 2010 (trial)',['fa-ext'],[]],
+  'Farmer’s carry':['3 × 30–40 m','Heavy carrying trains your grip, traps and whole trunk.',STD,['fa-flex','traps-up'],['ext-obl','rectus']],
+  'Hanging knee raise':['3 × 10–15','Trains the abs to curl your pelvis up.',STD,['rectus'],['ext-obl']],
+  'Ab-wheel rollout':['3 × 6–12','Trains the abs to stop your back arching, which is how they work in sport.',STD,['rectus'],['ext-obl','lat']],
+  'Crunch':['3 × 12–20','Bends your spine against resistance, the main job of the rectus abdominis.',STD,['rectus'],[]],
+  'Dead bug':['3 × 8 per side','Trains your deep core to brace while your arms and legs move.','McGill, core stability research',['tra'],['rectus']],
+  'Pallof press':['3 × 10 per side','Trains you to resist twisting, which keeps your trunk stable.',STD,['ext-obl','int-obl'],['rectus','tra']],
+  'Side plank':['3 × 30–45 s per side','Works the obliques hard while keeping the load on your spine low.','McGill, core stability research',['ext-obl','int-obl'],['gmed']],
+  'Cable woodchop':['3 × 10 per side','Trains the obliques to rotate your trunk with control.',STD,['ext-obl','int-obl'],['rectus']],
+  'Neck flexion with band':['2–3 × 12–15','Strengthens the front of your neck. Useful in contact sports.',STD,['scm'],[]],
+  'Back squat':['3–4 × 5–8','In a 10-week study, squats grew the vastus muscles, adductors and glutes.','Kubo et al., 2019',['vl','vm','vi','gmax'],['add-mag','iliocost','longis']],
+  'Leg extension':['3 × 10–15','Knee-straightening exercises grew the rectus femoris, which squats barely grow.','Ema et al., 2013',['rf','vl','vm','vi'],[]],
+  'Reverse Nordic':['2–3 × 6–10','Loads the rectus femoris at a long length, across both the hip and the knee.','Based on muscle anatomy',['rf'],['vl','vm','vi']],
+  'Leg press':['3 × 8–12','Heavy pushing for the quads with less strain on your back.',STD,['vl','vm','vi'],['gmax']],
+  'Deep squat':['3–4 × 6–10','Squatting through a full range trains the quads and glutes well.','Kubo et al., 2019',['vm','vl','vi','gmax'],['add-mag']],
+  'Split squat':['3 × 8–10 per leg','Strengthens one leg at a time, which helps keep the knee steady.',STD,['vl','vm','gmax'],['gmed','add-long']],
+  'Bulgarian split squat':['3 × 6–10 per leg','Builds single-leg strength, which matches how you sprint and kick.',STD,['vl','vm','gmax'],['gmed','add-long']],
+  'Copenhagen adduction':['2–3 × 6–10 per side','Cut groin problems by 41% in a trial of 652 footballers.','Harøy et al., 2019 (trial)',['add-long','gracilis','add-mag'],['ext-obl']],
+  'Heavy slow squats':['3–4 × 6–15, 3 s up / 3 s down','Improved symptoms and tendon quality in people with jumper’s knee.','Kongsgaard et al., 2009 (trial)',['patellar','vl','vm','vi'],['gmax']],
+  'Spanish squat hold':['5 × 30–45 s','Holds like this may ease tendon pain short-term. The evidence is mixed.','Rio et al., 2015',['patellar','vl','vm','vi'],[]],
+  'Tibialis raise':['3 × 15–20','Strengthens the front of your shin directly.',STD,['tibialis'],[]],
+  'Shrug':['3 × 10–15','Targets the upper traps, whose fibres run down from your neck.',STD,['traps-up'],[]],
+  'Prone Y-raise':['3 × 10–15','One of the best exercises for the lower traps in a muscle-activity study.','Ekstrom et al., 2003',['traps-lo'],['traps-mid','delt-rear']],
+  'Prone T-raise':['3 × 10–15','Lifting your arms out to the side, thumbs up, strongly activated the middle traps.','Ekstrom et al., 2003',['traps-mid','rhomboids'],['delt-rear']],
+  'Chest-supported row':['3 × 8–12','Pulls your shoulder blades together without loading your lower back.',STD,['traps-mid','rhomboids','lat'],['delt-rear','bic-long']],
+  'Pull-up / lat pulldown':['3–4 × 6–12','Pulling down from overhead is the main way to load the lats.',STD,['lat','teres-major'],['bic-long','bic-short','traps-lo']],
+  'One-arm cable row':['3 × 10–12 per side','Pulls your elbow toward your hip, along the direction the lower lat fibres run.','Based on fibre direction',['lat'],['teres-major','traps-mid','rhomboids']],
+  'Straight-arm pulldown':['3 × 10–15','Trains the lats and teres major with little help from the biceps.',STD,['lat','teres-major'],['tri-long']],
+  'Overhead cable extension':['3 × 10–12','Grew the triceps, especially the long head, more than pushdowns in a 12-week study.','Maeo et al., 2023 (trial)',['tri-long'],['tri-lat','tri-med']],
+  'Close-grip bench press':['3 × 6–10','A heavy press for all three triceps heads.',STD,['tri-lat','tri-long','tri-med'],['chest','delt-front']],
+  'Cable pushdown':['3 × 10–15','Arms at your side, so the lateral and medial heads do much of the work.',STD,['tri-lat','tri-med'],['tri-long']],
+  'Back extension':['3 × 10–15','Trains the spinal muscles directly.',STD,['iliocost','longis'],['gmax','bf','st','sm']],
+  'Romanian deadlift':['3 × 6–10','Loads the hamstrings and glutes at long lengths.',STD,['bf','st','sm','gmax'],['iliocost','longis','add-mag']],
+  'Bird dog':['3 × 8 per side, 8 s holds','Trains the deep spinal muscles to hold your back steady.','McGill, core stability research',['multifidus'],['gmax','longis']],
+  'Side-lying external rotation':['3 × 12–15 per side','Gave the highest infraspinatus and teres minor activation of the exercises tested.','Reinold et al., 2004',['infra','teres-minor'],['delt-rear']],
+  'Full-can raise':['3 × 12–15','Trained the supraspinatus well, with less shoulder pinching than the “empty can” version.','Kelly et al., 1996',['supra'],['delt-side','delt-front']],
+  'Cable internal rotation':['3 × 12–15 per side','Turning your arm inward against a cable trains the subscapularis.',STD,['subscap'],['pec-mid']],
+  'Hip thrust':['3–4 × 8–12','Activated the gluteus maximus more than back squats did.','Contreras et al., 2015',['gmax'],['bf','st','sm','gmed']],
+  'Side-lying hip abduction':['3 × 12–20 per side','Activated the gluteus medius more than any other exercise tested.','Distefano et al., 2009',['gmed','gmin'],[]],
+  'Banded side walk':['3 × 12–15 steps each way','Trains your hip to stay steady while you move.',STD,['gmed'],['gmin','gmax']],
+  'Nordic hamstring curl':['2–3 × 5, twice a week','Programmes that include it cut hamstring injuries by about half.','van Dyk et al., 2019 (meta-analysis)',['st','bf','sm'],['gas-med','gas-lat']],
+  '45° hip extension':['3 × 8–12','Grew the long head of the biceps femoris in a 10-week study.','Bourne et al., 2017 (trial)',['bf','st','gmax'],['sm','iliocost','longis']],
+  'Seated leg curl':['3 × 8–12','Grew the hamstrings more than lying leg curls did.','Maeo et al., 2021 (trial)',['bf','st','sm'],['gas-med','gas-lat','gracilis']],
+  'Standing calf raise':['3–4 × 8–12','Knee straight, so the gastrocnemius stays fully involved.',STD,['gas-med','gas-lat'],['soleus','achilles']],
+  'Seated calf raise':['3–4 × 10–15','Bending your knee shifts the work to the soleus.',STD,['soleus'],['achilles']],
+  'Bent-knee heel drop':['3 × 15','Loads the soleus and the Achilles tendon together.','Alfredson et al., 1998',['soleus','achilles'],[]],
+  'Heavy slow calf raise':['4 × 6–8, slow','Tendons get stronger and stiffer under high loads.','Bohm et al., 2015 (review)',['achilles','gas-med','gas-lat','soleus'],[]],
+  'Eccentric heel drop':['3 × 15, both knee positions','A classic programme for Achilles tendon pain.','Alfredson et al., 1998',['achilles'],['gas-med','gas-lat','soleus']],
+  'FIFA 11+ warm-up':['~20 min before training','Cut overall football injuries by about 30%.','Thorborg et al., 2017 (meta-analysis)',['bf','st','sm','add-long','gmed'],['vl','vm','rf','rectus','ext-obl']],
+  // Bodyweight options (plain descriptions, no study claims)
+  'Pike push-up':['3 × 6–12','Hips high, so the push works your shoulders more than your chest.',STD,['delt-front','delt-side'],['triceps','traps-up']],
+  'Diamond push-up':['3 × 6–15','Hands close together, so your triceps do more of the work.',STD,['tri-lat','tri-med','tri-long'],['chest','delt-front']],
+  'Bench dip':['3 × 8–15','Pushing yourself up from a chair or bench trains the triceps.',STD,['tri-lat','tri-med'],['delt-front','chest']],
+  'Chin-up':['3 × 5–10','Palms facing you, so the biceps help much more than in a pull-up.',STD,['lat','bic-long','bic-short'],['brachialis','teres-major']],
+  'Pull-up':['3–4 × 5–10','Pulling your own weight up to a bar is the classic bodyweight back builder.',STD,['lat','teres-major'],['bic-long','bic-short','traps-lo']],
+  'Inverted row':['3 × 8–12','Pulling your chest up to a low bar or sturdy table trains the upper back.',STD,['traps-mid','rhomboids','lat'],['delt-rear','bic-long']],
+  'Dead hang':['3 × 20–40 s','Hanging from a bar builds grip strength and endurance.',STD,['fa-flex'],['lat']],
+  'Bodyweight squat':['3 × 15–25','Builds the quads and glutes. Slow down or pause at the bottom to make it harder.',STD,['vl','vm','vi','gmax'],['add-mag']],
+  'Wall sit':['3 × 30–60 s','Holding a squat against a wall loads the quads without any movement.',STD,['vl','vm','vi','rf'],['patellar']],
+  'Glute bridge':['3 × 12–20','Lifting your hips off the floor trains the glutes, like a hip thrust without the bar.',STD,['gmax'],['bf','st','sm']],
+  'Single-leg glute bridge':['3 × 8–12 per side','One leg at a time makes the bridge much harder for the glutes and hamstrings.',STD,['gmax','bf','st'],['gmed','sm']],
+  'Single-leg calf raise':['3 × 10–20 per side','All your weight on one leg is enough load to build the calves.',STD,['gas-med','gas-lat'],['soleus','achilles']],
+  'Superman hold':['3 × 20–30 s','Lifting your arms and legs while lying face down trains the muscles along your spine.',STD,['iliocost','longis'],['gmax','multifidus']],
+  'General strength training':['2 sessions a week','Strength training cut sports injuries to less than a third.','Lauersen et al., 2014 (meta-analysis)',['chest','lat','vl','vm','gmax','bf','st','sm'],[]],
+};
+
+// Bodyweight picks per muscle (no gym needed; a bar, chair or step at most)
+const BWEX = {chest:['Push-up','Dips, leaning forward'], delts:['Pike push-up','Prone Y-raise'], biceps:['Chin-up'], forearms:['Dead hang'],
+  abs:['Hanging knee raise','Dead bug','Crunch'], obliques:['Side plank'], quads:['Bodyweight squat','Bulgarian split squat','Reverse Nordic'],
+  adductors:['Copenhagen adduction'], patellar:['Wall sit'], tibialis:['Tibialis raise'], traps:['Prone Y-raise','Prone T-raise','Inverted row'],
+  lats:['Pull-up','Inverted row'], lowerback:['Superman hold','Bird dog'], triceps:['Diamond push-up','Bench dip'],
+  glutes:['Glute bridge','Single-leg glute bridge','Side-lying hip abduction'], hamstrings:['Nordic hamstring curl','Single-leg glute bridge'],
+  calves:['Single-leg calf raise','Bent-knee heel drop'], achilles:['Eccentric heel drop','Single-leg calf raise']};
+const BW = new Set([...Object.values(BWEX).flat(), 'Split squat', 'FIFA 11+ warm-up']);
+// Order a list by the Workouts preference set in Profile
+function byKit(list){
+  if (kit === 'equip') return [...list.filter(n => !BW.has(n)), ...list.filter(n => BW.has(n))];
+  if (kit === 'body') return [...list.filter(n => BW.has(n)), ...list.filter(n => !BW.has(n))];
+  return list;
+}
+function groupList(g, list){
+  const bw = BWEX[g] || [], eq = list.filter(n => !BW.has(n));
+  if (kit === 'body') return bw.length ? bw : list;
+  if (kit === 'hybrid'){ const out = []; for (let k = 0; k < Math.max(bw.length, eq.length); k++){ if (bw[k]) out.push(bw[k]); if (eq[k]) out.push(eq[k]); } return [...new Set(out)].slice(0, 4); }
+  return list;
+}
+const KITS = [['equip','Equipment'],['hybrid','Hybrid'],['body','Bodyweight']];
+let kitMenuOpen = false;
+// "Bodyweight ▾": switch the workout type without leaving the panel (Profile keeps the default)
+const kitBtn = () => `<span class="kit-wrap"><button class="kit-btn" aria-haspopup="true" aria-expanded="${kitMenuOpen}">${KITS.find(k => k[0] === kit)[1]} <span aria-hidden="true">▾</span></button>${kitMenuOpen ? `<span class="kit-menu" role="menu">${KITS.map(([v, l]) => `<button role="menuitemradio" aria-checked="${v === kit}" data-kit="${v}">${l}${v === kit ? '<b>✓</b>' : ''}</button>`).join('')}</span>` : ''}</span>`;
+const GROUPS = {
+  neck:{name:'Neck',latin:'Sternocleidomastoid',parts:['scm'],about:'Runs from behind your ear to your collarbone and breastbone. It turns and bends your head, and helps protect your neck in contact sports.',ex:['Neck flexion with band']},
+  chest:{name:'Chest',latin:'Pectoralis major',parts:['pec-upper','pec-mid','pec-lower'],about:'Your main pushing muscle. Its fibres fan out from your collarbone and breastbone and meet at your upper arm.',tendon:'All three parts twist into one flat tendon on your upper-arm bone, near the armpit.',ex:['Bench press','Push-up']},
+  delts:{name:'Shoulders',latin:'Deltoid',parts:['delt-front','delt-side','delt-rear'],about:'A three-part muscle that lifts your arm forward, out to the side and back.',tendon:'All three parts meet in one tendon on the outside of your upper-arm bone.',ex:['Overhead press','Lateral raise','Face pull']},
+  biceps:{name:'Biceps',latin:'Elbow flexors',parts:['bic-long','bic-short','brachialis'],about:'The front of your upper arm. The two-headed biceps bends your elbow and turns your palm up. The brachialis underneath does much of the bending.',tendon:'Two tendons at the shoulder, one running through a groove in your upper-arm bone, and one tendon at the elbow.',ex:['Barbell curl','Hammer curl']},
+  forearms:{name:'Forearms',latin:'Forearm muscles',parts:['brachioradialis','fa-flex','fa-ext'],about:'More than 15 small muscles that control your wrist, fingers and grip. Strong forearms help with almost every lift.',tendon:'Long, thin tendons cross your wrist to reach your hand and fingers.',ex:['Farmer’s carry','Reverse curl']},
+  abs:{name:'Abs',latin:'Abdominal wall',parts:['rectus','tra'],about:'The front of your core. The six-pack lines are strips of tendon that divide one long muscle into sections.',ex:['Hanging knee raise','Ab-wheel rollout']},
+  obliques:{name:'Obliques',latin:'External & internal obliques',parts:['ext-obl','int-obl'],about:'Two layers on the sides of your waist, with fibres that cross like an X. They rotate your trunk and stop it twisting.',tendon:'They join the front of your abs through a wide, flat sheet of tendon.',ex:['Pallof press','Side plank']},
+  quads:{name:'Quads',latin:'Quadriceps femoris',parts:['rf','vl','vm','vi'],about:'Four muscles on the front of your thigh that straighten your knee. You use them to sprint, jump and kick.',tendon:'All four join the quadriceps tendon above your kneecap, which continues as the patellar tendon to your shin.',ex:['Back squat','Leg extension']},
+  adductors:{name:'Groin',latin:'Adductor group',parts:['add-long','gracilis','add-mag'],about:'Inner-thigh muscles that pull your legs together. Kicking and changing direction put heavy load on them.',ex:['Copenhagen adduction','Back squat']},
+  patellar:{name:'Patellar tendon',latin:'Ligamentum patellae',isTendon:1,parts:['patellar'],about:'Connects your kneecap to your shin. It carries the force of your quads every time you jump or land.',ex:['Heavy slow squats','Spanish squat hold']},
+  tibialis:{name:'Shin',latin:'Tibialis anterior',parts:['tibialis'],about:'Lifts your toes and controls your foot as it lands.',tendon:'A long tendon crosses the front of your ankle to the inside of your foot.',ex:['Tibialis raise']},
+  traps:{name:'Traps',latin:'Trapezius',parts:['traps-up','traps-mid','traps-lo','rhomboids'],about:'A large diamond-shaped muscle across your upper back. Its upper, middle and lower fibres run in three directions, so each part pulls your shoulder blades a different way.',ex:['Face pull','Shrug']},
+  cuff:{name:'Rotator cuff',latin:'Shoulder stabilisers',parts:['infra','teres-minor','supra','subscap'],about:'Four small muscles that hold the ball of your shoulder in its socket and turn your arm. Two can be seen from behind. Two lie deep.',tendon:'Their tendons blend into a cuff around the top of your upper-arm bone.',ex:['Side-lying external rotation','Full-can raise']},
+  lats:{name:'Lats',latin:'Latissimus dorsi & teres major',parts:['lat','teres-major'],about:'Your widest back muscles. They pull your arms down and back, as in a pull-up or a swimming stroke.',tendon:'The lats start from a wide sheet of tendon over your lower back and end in a flat tendon at the front of your upper-arm bone.',ex:['Pull-up / lat pulldown','One-arm cable row']},
+  lowerback:{name:'Lower back',latin:'Erector spinae',parts:['iliocost','longis','multifidus'],about:'Columns of muscle along your spine that keep it upright when you lift, run and bend.',ex:['Back extension','Romanian deadlift']},
+  triceps:{name:'Triceps',latin:'Triceps brachii',parts:['tri-long','tri-lat','tri-med'],about:'Three heads on the back of your arm that straighten your elbow. Together they make up about two-thirds of your upper arm.',tendon:'All three heads join one tendon at the point of your elbow.',ex:['Overhead cable extension','Close-grip bench press']},
+  glutes:{name:'Glutes',latin:'Gluteal group',parts:['gmax','gmed','gmin'],about:'Three muscles that move and steady your hip. They drive you forward when you sprint and keep your knees in line when you land.',tendon:'The gluteus maximus feeds into the IT band, a long strip of tendon down the outside of your thigh.',ex:['Hip thrust','Side-lying hip abduction']},
+  hamstrings:{name:'Hamstrings',latin:'Hamstring group',parts:['bf','st','sm'],about:'Three muscles on the back of your thigh that bend your knee and drive your hip. They are the most commonly strained muscles in sprinting sports.',tendon:'They start at your sitting bone and end in tendons on either side of the back of your knee.',ex:['Nordic hamstring curl','Seated leg curl']},
+  calves:{name:'Calves',latin:'Triceps surae',parts:['gas-med','gas-lat','soleus'],about:'Push you off the ground. When you run, the deep soleus takes more force than any other leg muscle.',tendon:'All three parts join into the Achilles tendon.',ex:['Standing calf raise','Seated calf raise']},
+  achilles:{name:'Achilles tendon',latin:'Tendo calcaneus',isTendon:1,parts:['achilles'],about:'The strongest tendon in the body. It joins your calf to your heel and stores energy like a spring when you run.',ex:['Heavy slow calf raise','Eccentric heel drop']},
+};
+
+const PART = {
+  'pec-upper':{name:'Upper',latin:'Clavicular head',about:'Starts at your collarbone, with fibres running down and out. It works hardest when you press upward at an angle.',ex:['Incline bench press (30°)','Low-to-high cable fly']},
+  'pec-mid':{name:'Middle',latin:'Sternal head',about:'The largest part, starting at your breastbone with fibres running straight across. It drives flat pressing.',ex:['Flat bench press','Flat dumbbell fly']},
+  'pec-lower':{name:'Lower',latin:'Abdominal head',about:'The lowest fibres, running up and out from your ribs. They work hardest when you press downward.',ex:['Decline bench press','Dips, leaning forward']},
+  'delt-front':{name:'Front',latin:'Anterior deltoid',about:'Lifts your arm forward. It already works hard in every chest press.',ex:['Overhead press','Front raise']},
+  'delt-side':{name:'Side',latin:'Lateral deltoid',about:'Lifts your arm out to the side. It gives the shoulders their width.',ex:['Lateral raise','Overhead press']},
+  'delt-rear':{name:'Rear',latin:'Posterior deltoid',about:'Pulls your arm back. It balances out all the pressing and supports good posture.',ex:['Reverse fly','Face pull']},
+  'bic-long':{name:'Long head',latin:'Outer side',about:'Starts above your shoulder joint and crosses it. It is stretched most when your arm is behind your body.',ex:['Incline dumbbell curl','Barbell curl']},
+  'bic-short':{name:'Short head',latin:'Inner side',about:'Starts on the front of your shoulder blade. It works hard when your arm is in front of your body.',ex:['Preacher curl','Barbell curl']},
+  'brachialis':{name:'Brachialis',latin:'Deep, under the biceps',deep:1,under:'bic-long',about:'Lies under the biceps and is your strongest elbow bender. It works whichever way your palm faces.',ex:['Hammer curl','Reverse curl']},
+  'brachioradialis':{name:'Brachioradialis',latin:'Thumb side',about:'The thick muscle on the thumb side of your forearm. It bends your elbow, especially with a thumbs-up grip.',ex:['Hammer curl','Reverse curl']},
+  'fa-flex':{name:'Flexors',latin:'Palm side',about:'Start at the inner bump of your elbow and close your hand and wrist. They do most of the work when you grip.',ex:['Wrist curl','Farmer’s carry']},
+  'fa-ext':{name:'Extensors',latin:'Back of forearm',about:'Start at the outer bump of your elbow and open your hand and wrist. Overuse here causes tennis elbow.',ex:['Reverse wrist curl','Eccentric wrist extension']},
+  'rectus':{name:'Rectus abdominis',latin:'The “six-pack”',about:'One long muscle from your ribs to your pelvis, with fibres running straight up and down. Three strips of tendon cross it, which creates the six-pack look.',ex:['Hanging knee raise','Crunch','Ab-wheel rollout']},
+  'tra':{name:'Transverse abdominis',latin:'Deep, wraps like a belt',deep:1,under:'rectus',about:'The deepest abdominal layer. Its fibres run sideways around your waist and tighten it like a belt before you move.',ex:['Dead bug','Pallof press']},
+  'ext-obl':{name:'External oblique',latin:'Outer layer',about:'Fibres run down and forward, like hands in your front pockets. It rotates your trunk to the opposite side.',ex:['Pallof press','Cable woodchop','Side plank']},
+  'int-obl':{name:'Internal oblique',latin:'Deep, under external oblique',deep:1,under:'ext-obl',about:'Lies under the external oblique with fibres running the opposite way. It rotates your trunk to the same side.',ex:['Side plank','Cable woodchop']},
+  'rf':{name:'Rectus femoris',latin:'Middle, top layer',about:'The only quad muscle that crosses both your hip and your knee. It lifts your thigh and straightens your knee, as in a kick.',ex:['Leg extension','Reverse Nordic']},
+  'vl':{name:'Vastus lateralis',latin:'Outer thigh',about:'The largest quad muscle, on the outside of your thigh. Its fibres angle down toward your kneecap.',ex:['Back squat','Leg press']},
+  'vm':{name:'Vastus medialis',latin:'Inner “teardrop”',about:'The teardrop shape above the inside of your knee. Its lowest fibres run almost sideways and help steady your kneecap.',ex:['Deep squat','Split squat']},
+  'vi':{name:'Vastus intermedius',latin:'Deep, under rectus femoris',deep:1,under:'rf',about:'Lies underneath the rectus femoris, so you can’t see it. It helps straighten your knee in every leg exercise.',ex:['Back squat','Leg extension']},
+  'add-long':{name:'Adductor longus',latin:'Front of groin',about:'Runs from your pubic bone to the middle of your thigh bone. It is the groin muscle injured most often in football.',ex:['Copenhagen adduction']},
+  'gracilis':{name:'Gracilis',latin:'Long, thin, inner thigh',about:'A long, thin strap that crosses both your hip and your knee. It helps pull your legs together and bend your knee.',ex:['Copenhagen adduction','Seated leg curl']},
+  'add-mag':{name:'Adductor magnus',latin:'Deep, behind adductor longus',deep:1,under:'add-long',about:'The biggest adductor. It is so large that part of it works like a hamstring to extend your hip.',ex:['Back squat','Romanian deadlift']},
+  'traps-up':{name:'Upper',latin:'Neck to shoulder',about:'Fibres run down and out from your neck to your collarbone. They lift your shoulder blades and turn them upward.',ex:['Shrug','Farmer’s carry']},
+  'traps-mid':{name:'Middle',latin:'Runs sideways',about:'Fibres run straight across to your shoulder blades. They squeeze your shoulder blades together.',ex:['Prone T-raise','Chest-supported row']},
+  'traps-lo':{name:'Lower',latin:'Runs upward',about:'Fibres run up and out from your mid-back. They pull your shoulder blades down and help when you lift your arms overhead.',ex:['Prone Y-raise','Face pull']},
+  'rhomboids':{name:'Rhomboids',latin:'Deep, under middle traps',deep:1,under:'traps-mid',about:'Lie under the middle traps and pull your shoulder blades toward your spine.',ex:['Chest-supported row','Prone T-raise']},
+  'infra':{name:'Infraspinatus',latin:'Back of shoulder blade',about:'Covers most of the back of your shoulder blade and turns your arm outward.',ex:['Side-lying external rotation','Face pull']},
+  'teres-minor':{name:'Teres minor',latin:'Below infraspinatus',about:'A small muscle that helps the infraspinatus turn your arm outward.',ex:['Side-lying external rotation']},
+  'supra':{name:'Supraspinatus',latin:'Deep, under upper traps',deep:1,under:'traps-up',about:'Sits on top of your shoulder blade, under the traps. It starts lifting your arm to the side, and its tendon is the cuff tendon injured most often.',ex:['Full-can raise']},
+  'subscap':{name:'Subscapularis',latin:'Deep, front of shoulder blade',deep:1,about:'The largest cuff muscle. It sits between your shoulder blade and your ribs and turns your arm inward.',ex:['Cable internal rotation']},
+  'lat':{name:'Latissimus dorsi',latin:'Widest back muscle',about:'Fibres fan from your lower back and spine up to your upper arm. The upper fibres run sideways and the lower fibres run steeply upward.',ex:['Pull-up / lat pulldown','Straight-arm pulldown']},
+  'teres-major':{name:'Teres major',latin:'Lower edge of shoulder blade',about:'Known as the lat’s little helper. It works with the lats to pull your arm down and back.',ex:['Straight-arm pulldown','One-arm cable row']},
+  'iliocost':{name:'Iliocostalis',latin:'Outer column',about:'The outer column of the erector spinae, running from your pelvis up to your ribs.',ex:['Back extension','Romanian deadlift']},
+  'longis':{name:'Longissimus',latin:'Middle column',about:'The longest column, running right next to your spine. It keeps you upright and arches your back.',ex:['Back extension','45° hip extension']},
+  'multifidus':{name:'Multifidus',latin:'Deep, along the spine',deep:1,under:'longis',about:'Short, deep fibres that link one vertebra to the next. They hold each segment of your spine steady.',ex:['Bird dog']},
+  'tri-long':{name:'Long head',latin:'Inner, closest to body',about:'The only head that crosses your shoulder, so it is stretched most when your arm is overhead.',ex:['Overhead cable extension','Close-grip bench press']},
+  'tri-lat':{name:'Lateral head',latin:'Outer, horseshoe shape',about:'The outer head that forms the horseshoe shape on the back of your arm.',ex:['Cable pushdown','Close-grip bench press']},
+  'tri-med':{name:'Medial head',latin:'Deep, near elbow',deep:1,under:'tri-long',about:'Mostly underneath the other two heads. It works in every elbow-straightening movement.',ex:['Close-grip bench press','Cable pushdown']},
+  'gmax':{name:'Gluteus maximus',latin:'Largest, outer layer',about:'The biggest muscle in your body. Its fibres run down and out, and it drives your hips forward when you sprint, jump and stand up.',ex:['Hip thrust','Back squat']},
+  'gmed':{name:'Gluteus medius',latin:'Upper, side of hip',about:'On the side of your hip. It keeps your pelvis level when you stand on one leg, every time you run or land.',ex:['Side-lying hip abduction','Banded side walk']},
+  'gmin':{name:'Gluteus minimus',latin:'Deep, under gluteus medius',deep:1,under:'gmed',about:'The smallest glute, underneath the gluteus medius. It holds the ball of your hip joint steady.',ex:['Side-lying hip abduction']},
+  'bf':{name:'Biceps femoris',latin:'Outer side',about:'The outer hamstring. Its long head is the one most often strained in sprinting.',ex:['45° hip extension','Nordic hamstring curl']},
+  'st':{name:'Semitendinosus',latin:'Middle',about:'A long, thin muscle with a long tendon at the knee. It does a lot of the work when you bend your knee.',ex:['Nordic hamstring curl','Seated leg curl']},
+  'sm':{name:'Semimembranosus',latin:'Inner side',about:'The inner hamstring. It is broad and strong, and helps both straighten your hip and bend your knee.',ex:['Romanian deadlift','Seated leg curl']},
+  'gas-med':{name:'Gastrocnemius',latin:'Inner head',about:'The bigger, inner half of the visible calf muscle. It works hardest when your knee is straight.',ex:['Standing calf raise','Heavy slow calf raise']},
+  'gas-lat':{name:'Gastrocnemius',latin:'Outer head',about:'The smaller, outer half of the visible calf muscle.',ex:['Standing calf raise']},
+  'soleus':{name:'Soleus',latin:'Lower, under gastrocnemius',about:'A flat muscle mostly underneath the gastrocnemius. It produces more force than any other leg muscle when you run.',ex:['Seated calf raise','Bent-knee heel drop']},
+};
+
+const SPORTS = {
+  football:{name:'Football',alias:['football','soccer'],tag:'Sprints · Kicks · Quick turns',
+    intro:'Most football injuries hit the thigh, groin, knee and ankle. These are the areas to build up first.',
+    focus:[['hamstrings','key','The most common muscle injury in football, usually while sprinting.'],['adductors','key','Kicking and cutting put heavy load on the groin.'],['quads','key','Power for kicking, sprinting and stopping.'],['achilles','key','Absorbs force every time you sprint or jump.'],['glutes','imp','Drive acceleration and protect your knee when you land.'],['calves','imp','Push-off for sprints and changes of direction.'],['patellar','imp','Takes big loads when you jump and slow down.']],
+    all:['Nordic hamstring curl','Copenhagen adduction','FIFA 11+ warm-up','Heavy slow calf raise','Bulgarian split squat','Hip thrust'],
+    program:{name:'Football strength programme',meta:'2 sessions a week · around 45 minutes each',
+      sessions:[{name:'Session A · Strength',ex:['FIFA 11+ warm-up','Back squat','Nordic hamstring curl','Copenhagen adduction','Heavy slow calf raise']},
+                {name:'Session B · Power & control',ex:['FIFA 11+ warm-up','Bulgarian split squat','Hip thrust','Romanian deadlift','Pallof press']}],
+      note:'Built from the exercises with the strongest injury-prevention evidence in football. Do Session A and Session B on separate days, away from match day.'}},
+  running:{name:'Running',alias:['running','run','marathon','jogging'],tag:'Endurance · Repeated impact',
+    intro:'Running is a repeated one-leg bounce. Most running injuries come from overuse in the lower leg and knee.',
+    focus:[['calves','key','The deep soleus takes more force than any other leg muscle when you run.'],['achilles','key','Stores and returns energy with every stride.'],['glutes','key','Keep your hips and knees lined up on each landing.'],['quads','imp','Absorb the impact when your foot lands.'],['patellar','imp','Loaded heavily on downhills and at faster paces.'],['hamstrings','imp','Slow your leg down before each footstrike.']],
+    all:['Seated calf raise','Heavy slow calf raise','Side-lying hip abduction','General strength training'],
+    program:{name:'Runner strength programme',meta:'2 sessions a week · on easy-run days',
+      sessions:[{name:'Session A · Lower leg & hips',ex:['Back squat','Seated calf raise','Side-lying hip abduction','Side plank']},
+                {name:'Session B · Single-leg strength',ex:['Bulgarian split squat','Heavy slow calf raise','Hip thrust','Romanian deadlift']}],
+      note:'Strength training cut sports injuries to less than a third in a large review. Keep these sessions on easy-run days, not before long runs or races.'}},
+  basketball:{name:'Basketball',alias:['basketball','volleyball','jumping'],tag:'Jumps · Landings · Cuts',
+    intro:'Basketball is full of jumping and landing. The knee tendon and the ankle are the main areas at risk.',
+    focus:[['patellar','key','Jumper’s knee affected about 1 in 3 elite basketball players.'],['quads','key','Power your jump and absorb your landing.'],['calves','key','Push-off for jumps and quick first steps.'],['achilles','key','Stores energy for every jump.'],['glutes','imp','Keep your knees from collapsing inward when you land.'],['adductors','imp','Loaded heavily when you cut sideways and defend.']],
+    all:['Heavy slow squats','Heavy slow calf raise','Hip thrust','General strength training'],
+    program:{name:'Jumper strength programme',meta:'2 sessions a week · around 40 minutes each',
+      sessions:[{name:'Session A · Tendon strength',ex:['Heavy slow squats','Heavy slow calf raise','Hip thrust','Copenhagen adduction']},
+                {name:'Session B · Single-leg & core',ex:['Bulgarian split squat','Nordic hamstring curl','Seated calf raise','Pallof press']}],
+      note:'Slow, heavy loading is the best-supported way to build tendon strength. Leave a day between sessions so your tendons can recover.'}},
+};
+
+// Sample week of training for the Profile heat map (sets per muscle)
+const WEEK = {chest:12,delts:9,triceps:8,biceps:6,forearms:3,lats:10,traps:6,cuff:2,lowerback:4,abs:6,obliques:3,quads:12,adductors:5,hamstrings:8,glutes:10,calves:4};
+
+// =====================================================================
+// 3. GEOMETRY BUILDING
+// =====================================================================
+const FULL = [0,0,200,440];
+let kit = 'equip', sex = 'male', view = 'front', sel = null, head = null, sport = null, cameFromSport = false, exHi = null;
+const singles = new Set(), progs = new Set();
+const groupOf = {};
+Object.entries(GROUPS).forEach(([g, G]) => G.parts.forEach(id => groupOf[id] = g));
+
+// Female figure: same muscles, with narrower shoulders and waist and wider hips
+const WK = [[0,.93],[60,.9],[72,.83],[110,.86],[160,.78],[188,.84],[212,1.02],[238,1.12],[275,1.08],[330,.98],[440,.94]];
+function wf(y){ for (let k = 1; k < WK.length; k++){ if (y <= WK[k][0]){ const [y0,f0] = WK[k-1], [y1,f1] = WK[k]; return f0 + (f1-f0)*(y-y0)/(y1-y0); } } return .95; }
+function warp(x, y, arm){ if (sex !== 'female') return [x, y]; const f = arm ? .875 : wf(y); return [100 + (x-100)*f, y]; }
+const fx = n => +n.toFixed(2);
+const pt = a => fx(a[0]) + ',' + fx(a[1]);
+function warpStr(d, arm){ return d.replace(/(-?\d+\.?\d*),(-?\d+\.?\d*)/g, (_, x, y) => pt(warp(+x, +y, arm))); }
+const lerp = (a, b, t) => [a[0]+(b[0]-a[0])*t, a[1]+(b[1]-a[1])*t];
+const quad = (a, c, b, s) => [(1-s)*(1-s)*a[0]+2*(1-s)*s*c[0]+s*s*b[0], (1-s)*(1-s)*a[1]+2*(1-s)*s*c[1]+s*s*b[1]];
+
+function buildPart(P, arm){
+  const W = (a, k) => warp(a[k], a[k+1], arm);
+  const O1 = W(P.o,0), O2 = W(P.o,2), I1 = W(P.i,0), I2 = W(P.i,2), C1 = W(P.c,0), C2 = W(P.c,2);
+  const outline = `M${pt(O1)} Q${pt(C1)} ${pt(I1)} L${pt(I2)} Q${pt(C2)} ${pt(O2)} Z`;
+  const m0 = quad(O1,C1,I1,.5), m1 = quad(O2,C2,I2,.5);
+  const n = Math.max(4, Math.min(16, Math.round(Math.hypot(m0[0]-m1[0], m0[1]-m1[1]) / 1.5)));
+  let fib = '';
+  for (let k = 1; k < n; k++){ const t = k/n; fib += `M${pt(lerp(O1,O2,t))} Q${pt(lerp(C1,C2,t))} ${pt(lerp(I1,I2,t))}`; }
+  let bands = '';
+  (P.bands || []).forEach(s => { const ps = []; for (let k = 0; k <= 8; k++){ const t = k/8; ps.push(quad(lerp(O1,O2,t), lerp(C1,C2,t), lerp(I1,I2,t), s)); } bands += 'M' + ps.map(pt).join(' L'); });
+  return {id:P.id, tendon:!!P.tendon, outline, fib, bands, pts:[O1,O2,I1,I2,C1,C2]};
+}
+function buildTendon(T, arm){
+  if (T.d) return warpStr(T.d, arm);
+  const A = warp(T.a[0], T.a[1], arm), B = warp(T.a[2], T.a[3], arm), E = warp(T.to[0], T.to[1], arm);
+  const ux = B[0]-A[0], uy = B[1]-A[1], l = Math.hypot(ux, uy) || 1, h = T.w/2;
+  return `M${pt(A)} L${pt(B)} L${pt([E[0]+ux/l*h, E[1]+uy/l*h])} L${pt([E[0]-ux/l*h, E[1]-uy/l*h])} Z`;
+}
+let BUILT = {}, PTS = {};
+function buildAll(){
+  ['front','back'].forEach(v => {
+    PTS[v] = {};
+    BUILT[v] = GEO[v].map(it => {
+      if (it.bone) return {bone: warpStr(it.bone)};
+      if (it.contour) return {contour: warpStr(it.contour), female: it.female};
+      const parts = it.parts.map(P => buildPart(P, it.arm));
+      parts.forEach(b => PTS[v][b.id] = b.pts);
+      return {g: it.g, parts, tendons: (it.tendons || []).map(T => buildTendon(T, it.arm))};
+    });
+  });
+}
+function bodyMarkup(v){
+  const full = (sex === 'female' ? `<path class="hair" d="${warpStr(HAIR)}"/>` : '') + FULL_SKIN.map(d => `<path class="skin" d="${warpStr(d)}"/>`).join('');
+  let half = HALF_SKIN.map(s => `<path class="skin" d="${warpStr(s.d, s.arm)}"/>`).join('');
+  BUILT[v].forEach(it => {
+    if (it.bone){ half += `<path class="bone" d="${it.bone}"/>`; return; }
+    if (it.contour){ if (!it.female || sex === 'female') half += `<path class="contour" d="${it.contour}"/>`; return; }
+    half += `<g class="grp" data-g="${it.g}">`
+      + it.parts.map(b => `<path class="ol" d="${b.outline}"/>`).join('')
+      + it.parts.map(b => `<path class="pf${b.tendon?' tdp':''}" data-p="${b.id}" d="${b.outline}"/>`).join('')
+      + it.parts.map(b => `<path class="fib${b.tendon?' tdp':''}" data-p="${b.id}" d="${b.fib}"/>`).join('')
+      + it.parts.filter(b => b.bands).map(b => `<path class="band" d="${b.bands}"/>`).join('')
+      + it.tendons.map(d => `<path class="td" d="${d}"/>`).join('')
+      + '</g>';
+  });
+  return full + `<g>${half}</g><g transform="matrix(-1 0 0 1 200 0)">${half}</g>`;
+}
+
+// =====================================================================
+// 4. STATE → PICTURE
+// =====================================================================
+const $ = id => document.getElementById(id);
+const svg = $('body'), sheet = $('sheet'), phone = $('phone');
+let vb = FULL.slice(), anim;
+
+const expand = list => list.flatMap(id => GROUPS[id] ? GROUPS[id].parts : [id]);
+const surfaceOf = id => PART[id] && PART[id].deep ? PART[id].under : id;
+function partView(id){ const r = surfaceOf(id); if (!r) return null; const f = !!PTS.front[r], b = !!PTS.back[r]; return f && b ? 'both' : f ? 'front' : b ? 'back' : null; }
+function groupView(g){ const vs = GROUPS[g].parts.map(partView).filter(Boolean); const f = vs.some(v => v !== 'back'), b = vs.some(v => v !== 'front'); return f && b ? 'both' : f ? 'front' : 'back'; }
+
+function stateClasses(){
+  const parts = {}, hot = new Set(); let any = false;
+  const mark = (id, c) => {
+    const info = PART[id];
+    hot.add(groupOf[id]);
+    if (info && info.deep){
+      const u = info.under;
+      if (u){ hot.add(groupOf[u]); if (c === 'on' && parts[u] !== 'on') parts[u] = 'deep'; else if (!parts[u]) parts[u] = 'soft'; }
+      return;
+    }
+    if (c === 'on' || !parts[id] || parts[id] === 'sib') parts[id] = c;
+  };
+  if (exHi){ any = true; const e = LIB[exHi]; expand(e[4]).forEach(id => mark(id, 'soft')); expand(e[3]).forEach(id => mark(id, 'on')); }
+  else if (sel){
+    any = true;
+    GROUPS[sel].parts.forEach(id => { if (!(PART[id] && PART[id].deep)) mark(id, !head || head === id ? 'on' : 'sib'); });
+    if (head && PART[head] && PART[head].deep){ const u = PART[head].under; if (u) parts[u] = 'deep'; }
+  } else if (sport){ any = true; SPORTS[sport].focus.forEach(([g, lv]) => expand([g]).forEach(id => mark(id, lv === 'key' ? 'on' : 'soft'))); }
+  return {parts, hot, any};
+}
+const DEFS = '<defs>' + [['hatch','hz'],['hatchT','hzt']].map(([id, c]) => `<pattern id="${id}" patternUnits="userSpaceOnUse" width="2.6" height="2.6" patternTransform="rotate(45)"><rect class="${c}-bg" width="2.6" height="2.6"/><line class="${c}-ln" x1="1.3" y1="0" x2="1.3" y2="2.6"/></pattern>`).join('') + '</defs>';
+function draw(){ svg.innerHTML = DEFS + bodyMarkup(view); paint(); }
+function paint(){
+  const st = stateClasses();
+  svg.classList.toggle('dim', st.any);
+  svg.querySelectorAll('.grp').forEach(g => { g.classList.toggle('hot', st.hot.has(g.dataset.g)); g.classList.toggle('open', g.dataset.g === sel && !exHi); });
+  svg.querySelectorAll('[data-p]').forEach(el => { el.classList.remove('on','soft','sib','deep'); const c = st.parts[el.dataset.p]; if (c) el.classList.add(c); });
+  relabel(500);
+}
+let zooming = false;
+function zoomTo(target){
+  cancelAnimationFrame(anim);
+  zooming = true; $('labels').style.opacity = 0;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches){ vb = target; svg.setAttribute('viewBox', vb.join(' ')); zooming = false; return placeLabels(); }
+  const from = vb.slice(), t0 = performance.now(), dur = 520;
+  const step = now => {
+    const k = Math.min(1, (now-t0)/dur), e = k < .5 ? 4*k*k*k : 1 - Math.pow(-2*k+2, 3)/2;
+    vb = from.map((v, i) => v + (target[i]-v)*e);
+    svg.setAttribute('viewBox', vb.join(' '));
+    if (k < 1) anim = requestAnimationFrame(step); else { zooming = false; placeLabels(); }
+  };
+  anim = requestAnimationFrame(step);
+}
+function zoomToParts(ids, pad, below){
+  let x1 = 1e9, y1 = 1e9, x2 = -1e9, y2 = -1e9;
+  ids.forEach(id => (PTS[view][id] || []).forEach(([x, y]) => [x, 200-x].forEach(X => { x1 = Math.min(x1, X); x2 = Math.max(x2, X); y1 = Math.min(y1, y); y2 = Math.max(y2, y); })));
+  if (x1 > x2) return zoomTo(FULL);
+  const w = Math.max(x2-x1, 64)*pad, h = Math.max(y2-y1, 50)*pad;
+  if (h > 330) return zoomTo(FULL);
+  zoomTo([(x1+x2)/2 - w/2, (y1+y2)/2 - h/2, w, h*(1 + (below || 0))]);
+}
+const zoomToGroup = g => zoomToParts(GROUPS[g].parts.map(surfaceOf).filter(Boolean), 1.45);
+// Sport view: zoom in on the focus areas instead of showing a tiny whole body
+const zoomSport = () => zoomToParts(SPORTS[sport].focus.flatMap(f => GROUPS[f[0]].parts.map(surfaceOf)).filter(id => id && PTS[view][id]), 1.1, .14);
+
+// Name labels for the main muscles, drawn beside the body with a line pointing in
+const stage = document.querySelector('.stage');
+let labelTimer;
+function relabel(ms){ $('labels').style.opacity = 0; clearTimeout(labelTimer); labelTimer = setTimeout(() => { if (!zooming) placeLabels(); }, ms); }
+function labelGroups(){
+  if (exHi) return [];
+  if (sport && !sel && sheetFn === sportSheet) return SPORTS[sport].focus.filter(f => f[1] === 'key').map(f => f[0]);
+  return [];
+}
+function placeLabels(){
+  const box = $('labels'), r = svg.getBoundingClientRect(), s = stage.getBoundingClientRect();
+  box.innerHTML = '';
+  if (r.height < 150 || !$('profile').hidden) return;
+  const sc = Math.min(r.width/vb[2], r.height/vb[3]);
+  const ox = r.left - s.left + (r.width - vb[2]*sc)/2, oy = r.top - s.top + (r.height - vb[3]*sc)/2;
+  const toPx = (x, y) => [ox + (x-vb[0])*sc, oy + (y-vb[1])*sc];
+  const st = stateClasses();
+  const items = labelGroups().map(g => {
+    const vis = GROUPS[g].parts.map(surfaceOf).filter(id => id && PTS[view][id]), solid = vis.filter(id => st.parts[id] === 'on');
+    const ps = (solid.length ? solid.slice(0, 1) : vis).map(id => PTS[view][id]);
+    if (!ps.length) return null;
+    const mids = ps.map(([O1,O2,I1,I2,C1,C2]) => lerp(quad(O1,C1,I1,.5), quad(O2,C2,I2,.5), .5));
+    const x = mids.reduce((a, m) => a + m[0], 0)/mids.length, y = mids.reduce((a, m) => a + m[1], 0)/mids.length;
+    return {g, x, y};
+  }).filter(Boolean).sort((a, b) => a.y - b.y);
+  const top = Math.max(r.top - s.top + 14, 64), bottom = r.bottom - s.top - 58;
+  const side = {L: [], R: []};
+  items.forEach((it, k) => {
+    const L = k % 2 === 0, [ax, ay] = toPx(L ? it.x : 200 - it.x, it.y);
+    if (ay < r.top - s.top || ay > r.bottom - s.top) return;
+    side[L ? 'L' : 'R'].push({name: GROUPS[it.g].name, ax, ay, ly: ay, L});
+  });
+  let lines = '';
+  ['L','R'].forEach(k => {
+    let last = -1e9;
+    side[k].forEach(o => { o.ly = Math.min(bottom, Math.max(top, o.ly, last + 30)); last = o.ly; });
+    side[k].forEach(o => {
+      const d = document.createElement('div'); d.className = 'lbl'; d.textContent = o.name; d.style.top = o.ly + 'px';
+      d.style[o.L ? 'left' : 'right'] = '12px'; box.appendChild(d);
+      const w = d.offsetWidth, ex = o.L ? 12 + w : s.width - 12 - w, lx0 = o.L ? 12 : ex, lx1 = o.L ? ex : s.width - 12;
+      let x1 = ex, y1 = o.ly;
+      // No room beside the muscle (zoomed in): lift the tag above it and point down at it
+      if ((o.L ? o.ax - ex : ex - o.ax) < 40){
+        o.ly = o.ay - 64 >= top ? o.ay - 64 : Math.min(bottom, o.ay + 64); d.style.top = o.ly + 'px';
+        y1 = o.ly + (o.ly < o.ay ? 13 : -13);
+        x1 = o.ax > lx0 - 4 && o.ax < lx1 + 4 ? Math.min(lx1 - 14, Math.max(lx0 + 14, o.ax)) : ex;
+        if (x1 === ex) y1 = o.ly;
+      }
+      lines += `<line x1="${x1}" y1="${y1}" x2="${o.ax}" y2="${o.ay}"/>`;
+      lines += `<circle cx="${o.ax}" cy="${o.ay}" r="3"/>`;
+    });
+  });
+  box.insertAdjacentHTML('afterbegin', `<svg>${lines}</svg>`);
+  box.style.opacity = 1;
+}
+function setViewButtons(){ $('vFront').classList.toggle('on', view === 'front'); $('vBack').classList.toggle('on', view === 'back'); }
+function setView(v){ if (view === v) return; view = v; setViewButtons(); draw(); if (exHi) applyEx(true); else if (sel) zoomToGroup(sel); else if (sport && sheetFn === sportSheet) zoomSport(); }
+function setHint(t){ $('hint').textContent = t; $('hint').style.opacity = t ? 1 : 0; }
+
+// =====================================================================
+// 5. SHEETS
+// =====================================================================
+let sheetFn = null;
+const segctl = document.querySelector('.segctl'), toolbar = document.querySelector('.toolbar');
+function placeCtl(){ (phone.classList.contains('open') ? $('sheetCtl') : toolbar).appendChild(segctl); }
+function render(fn){ kitMenuOpen = false; sheetFn = fn; sheet.innerHTML = fn(); sheet.scrollTop = 0; phone.classList.add('open'); phone.classList.remove('mini'); phone.classList.toggle('plan', fn === planSheet); placeCtl(); }
+function refresh(){ if (!sheetFn) return; const y = sheet.scrollTop; sheet.innerHTML = sheetFn(); sheet.scrollTop = y; }
+function closeSheet(){ phone.classList.remove('open', 'full', 'mini', 'plan'); sheetFn = null; placeCtl(); }
+function setSheet(pos){ phone.classList.toggle('full', pos === 'full'); phone.classList.toggle('mini', pos === 'mini'); relabel(500); }
+const sheetPos = () => phone.classList.contains('full') ? 'full' : phone.classList.contains('mini') ? 'mini' : 'half';
+// Tap the handle: lowest → half → full → half
+const nextPos = () => ({mini: 'half', half: 'full', full: 'half'})[sheetPos()];
+// Drag the handle up for a full panel, down for half. A tap toggles.
+const sheetBox = $('sheetBox'), grab = $('grab');
+let drag = null;
+grab.addEventListener('pointerdown', e => {
+  if (!phone.classList.contains('open')) return;
+  drag = {y: e.clientY, h: sheetBox.offsetHeight, moved: false};
+  grab.setPointerCapture(e.pointerId); sheetBox.classList.add('drag');
+});
+grab.addEventListener('pointermove', e => {
+  if (!drag) return;
+  const dy = e.clientY - drag.y; if (Math.abs(dy) > 4) drag.moved = true;
+  sheetBox.style.height = Math.max(172, Math.min(phone.offsetHeight - 64, drag.h - dy)) + 'px';
+});
+grab.addEventListener('pointerup', e => {
+  if (!drag) return;
+  const {y, h, moved} = drag, nh = h - (e.clientY - y);
+  const stops = {mini: 172, half: phone.offsetHeight*.34 + 90, full: phone.offsetHeight - 64};
+  drag = null; sheetBox.classList.remove('drag'); sheetBox.style.height = '';
+  // Snap to the nearest of the three positions
+  setSheet(moved ? Object.keys(stops).reduce((a, b) => Math.abs(stops[b] - nh) < Math.abs(stops[a] - nh) ? b : a) : nextPos());
+});
+grab.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); setSheet(nextPos()); } });
+
+const ICON_EQ = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 7v10M18 7v10M3 10v4M21 10v4M6 12h12"/></svg>';
+const ICON_BW = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="4.5" r="2.3"/><path d="M12 8v7m0 0-3.5 6m3.5-6 3.5 6M6.5 11h11"/></svg>';
+function exCard(n){
+  const e = LIB[n]; if (!e) return '';
+  const on = singles.has(n), s = exHi === n;
+  return `<div class="ex${s?' sel':''}" data-ex="${n}" role="button" tabindex="0"><div><div class="ex-name">${n}</div><div class="ex-dose">${e[0]}<span class="kit">${BW.has(n) ? ICON_BW + 'Bodyweight' : ICON_EQ + 'Equipment'}</span></div></div>
+    <button class="add${on?' on':''}" data-add="${n}" aria-label="${on?'Remove from':'Add to'} plan">${on?'✓':'+'}</button>
+    <div class="ex-why">${e[1]}</div>
+    <div class="ex-src"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h12l4 4v12H4z"/><path d="M8 12h8M8 16h5"/></svg>${e[2]}<span class="see">${s?'Showing muscles':'See muscles'}</span></div></div>`;
+}
+function progCard(k, inPlan){
+  const P = SPORTS[k].program, added = progs.has(k);
+  const count = new Set(P.sessions.flatMap(s => s.ex)).size;
+  return `<div class="prog"><div class="eyebrow">${inPlan ? SPORTS[k].name : 'Full programme'}</div><div class="prog-name">${P.name}</div><div class="prog-meta">${P.meta} · ${count} exercises</div>
+    ${P.sessions.map(s => `<div class="sess"><div class="sess-name">${s.name}</div>${s.ex.map(n => `<div class="row${exHi===n?' sel':''}" data-ex="${n}" role="button" tabindex="0"><span>${n}</span><span class="row-dose">${LIB[n][0]}</span></div>`).join('')}</div>`).join('')}
+    <div class="prog-note">${P.note}</div>
+    <button class="cta${added?' done':''}" data-prog="${k}">${added ? (inPlan ? 'Remove programme' : 'Added to My plan ✓') : 'Add whole programme to My plan'}</button></div>`;
+}
+// Three layouts to compare: standard (parts first, About at the end),
+// description beside the name, or tendon note beside the name
+const kitNote = g => kit === 'body' && !(BWEX[g] || []).length ? '<div class="kit-note">This muscle needs light resistance, so these use a band or light dumbbell.</div>' : '';
+function groupSheet(){
+  const d = GROUPS[sel], lay = document.body.dataset.lay || 'std';
+  const top = `<div class="eyebrow">${d.isTendon?'Tendon':'Muscle'}${cameFromSport?' · '+SPORTS[sport].name:''}</div>
+    <div class="title">${d.name}</div><div class="latin">${d.latin}</div>`;
+  const about = `<div class="about">${d.about}</div>`;
+  const tnote = d.tendon ? `<div class="tendon-note"><span class="dot"></span><div><b>Tendons:</b> ${d.tendon}</div></div>` : '';
+  let parts = '', rest;
+  if (d.parts.length > 1){
+    parts = `<h3>${d.parts.length} parts · tap one</h3><div class="heads">
+      <button class="head${!head?' on':''}" data-head=""><b>Overview</b><small>All parts</small></button>
+      ${d.parts.map(id => { const x = PART[id]; return `<button class="head${id===head?' on':''}" data-head="${id}"><b>${x.name}${x.deep?'<em>Deep</em>':''}</b><small>${x.latin}</small></button>`; }).join('')}</div>`;
+    const hd = head && PART[head];
+    rest = hd ? `<div class="part"><div class="part-name">${hd.name}</div><div class="latin">${hd.latin}</div><div class="about">${hd.about}</div></div><h3><span>Best · ${hd.name}</span>${kitBtn()}</h3>${byKit(hd.ex).map(exCard).join('')}`
+              : `<h3><span>Best exercises</span>${kitBtn()}</h3>${kitNote(sel)}${groupList(sel, d.ex).map(exCard).join('')}`;
+  } else rest = `<h3><span>${d.isTendon?'Keep it strong':'Best exercises'}</span>${kitBtn()}</h3>${kitNote(sel)}${groupList(sel, d.ex).map(exCard).join('')}`;
+  if (lay === 'desc') return `<div class="side"><div>${top}</div>${about}</div>${tnote}${parts}${rest}`;
+  if (lay === 'tendon') return (tnote ? `<div class="side"><div>${top}</div>${tnote}</div>` : top) + about + parts + rest;
+  return top + parts + rest + `<h3>About the ${d.name.toLowerCase()}</h3>` + about + tnote;
+}
+function sportSheet(){
+  const s = SPORTS[sport];
+  return `<div class="eyebrow">Sport</div><div class="title">${s.name}</div><div class="latin">${s.tag}</div><div class="about">${s.intro}</div>
+    ${progCard(sport, false)}
+    <h3>Focus areas · tap to explore</h3>
+    ${s.focus.map(f => { const d = GROUPS[f[0]]; const b = d.isTendon ? '<span class="badge tdn">Tendon</span>' : `<span class="badge ${f[1]}">${f[1]==='key'?'Key':'Important'}</span>`;
+      return `<div class="focus" data-focus="${f[0]}" role="button" tabindex="0">${b}<div class="focus-txt"><b>${d.name}</b><span>${f[2]}</span></div><span class="chev">›</span></div>`; }).join('')}
+    <h3><span>Pick single exercises</span>${kitBtn()}</h3>${byKit(s.all).map(exCard).join('')}`;
+}
+function planSheet(){
+  let html = `<div class="eyebrow">My plan</div><div class="title">Your training</div>`;
+  if (!progs.size && !singles.size) return html + `<div class="empty">Nothing here yet. Search a sport and tap <b>Add whole programme</b>, or tap + on any single exercise.</div>`;
+  if (progs.size) html += `<h3>Programmes</h3>` + [...progs].map(k => progCard(k, true)).join('');
+  if (singles.size) html += `<h3>Single exercises</h3>` + [...singles].map(exCard).join('');
+  return html;
+}
+
+// Scroll the exercise cards up to sit right under the fixed strip,
+// going further if needed so the picked card is fully in view
+function liftCards(el){
+  const strip = sheet.querySelector('.eyebrow'), stripH = strip ? strip.offsetHeight : 0;
+  const rel = n => n.getBoundingClientRect().top - sheet.getBoundingClientRect().top + sheet.scrollTop;
+  const first = el.classList.contains('ex') ? (el.parentElement.querySelector('.ex') || el) : el;
+  const view = phone.offsetHeight*.34 + 90 - 26 - 100 - stripH;
+  let y = rel(first) - stripH - 14;
+  if (rel(el) + el.offsetHeight - y > view) y = rel(el) - stripH - 14;
+  sheet.scrollTo({top: Math.max(0, y), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+}
+function updateBack(){
+  let t = null;
+  if (exHi) t = sel ? GROUPS[sel].name : sport && sheetFn === sportSheet ? SPORTS[sport].name : sheetFn === planSheet ? 'My plan' : null;
+  else if (sel && head) t = GROUPS[sel].name;
+  else if (sel) t = cameFromSport && sport ? SPORTS[sport].name : 'All muscles';
+  else if (sport) t = 'All muscles';
+  $('backBtn').hidden = !t; $('backTxt').textContent = t || '';
+  $('backBtn2').hidden = !t; $('backBtn2').setAttribute('aria-label', t ? 'Back to ' + t : 'Go back');
+}
+function hideName(){ clearTimeout(nameTimer); $('mname').classList.remove('show'); }
+function showGroup(g, h){
+  hideName();
+  const same = sel === g, prev = view;
+  exHi = null; $('pill').hidden = true;
+  sel = g; head = GROUPS[g].parts.length > 1 ? (h || null) : null;
+  const target = head ? partView(head) || groupView(g) : groupView(g);
+  if (target !== 'both' && target !== view){ view = target; setViewButtons(); }
+  draw();
+  if (!same || view !== prev) zoomToGroup(g);
+  $('backBtn').hidden = false; $('legend').hidden = true;
+  setHint('');
+  render(groupSheet); updateBack();
+  const on = sheet.querySelector('.head.on'), row = sheet.querySelector('.heads');
+  if (on && row) row.scrollLeft = on.offsetLeft - row.offsetLeft - 22;
+}
+function showSport(k){
+  sport = k; sel = null; head = null; exHi = null; cameFromSport = false; $('pill').hidden = true;
+  document.querySelectorAll('#chips .chip').forEach(c => c.classList.toggle('on', c.dataset.s === k));
+  const s = SPORTS[k], f = s.focus.filter(x => groupView(x[0]) !== 'back').length;
+  view = s.focus.length - f > f ? 'back' : 'front'; setViewButtons();
+  draw();
+  $('legend').hidden = false; setHint('');
+  render(sportSheet); updateBack(); zoomSport();
+}
+function clearSearch(){ $('q').value = ''; $('clear').hidden = true; document.querySelectorAll('#chips .chip').forEach(c => c.classList.remove('on')); }
+function reset(){
+  sel = null; head = null; sport = null; exHi = null; cameFromSport = false;
+  clearSearch();
+  $('backBtn').hidden = true; $('legend').hidden = true; $('pill').hidden = true;
+  closeSheet(); draw(); zoomTo(FULL); setHint('Tap any muscle to explore');
+}
+
+// Tapping an exercise lights up the muscles it trains
+function applyEx(keepView){
+  document.querySelectorAll('[data-ex]').forEach(c => {
+    const on = c.dataset.ex === exHi; c.classList.toggle('sel', on);
+    const see = c.querySelector('.see'); if (see) see.textContent = on ? 'Showing muscles' : 'See muscles';
+  });
+  if (!exHi){ hideName(); $('pill').hidden = true; paint(); updateBack(); if (sel) zoomToGroup(sel); else if (sport && sheetFn === sportSheet) zoomSport(); else zoomTo(FULL); setHint(''); return; }
+  phone.classList.remove('full');
+  const e = LIB[exHi], prim = expand(e[3]).map(surfaceOf).filter(Boolean);
+  if (!keepView){
+    const cnt = v => prim.filter(id => PTS[v][id]).length;
+    const best = cnt('front') >= cnt('back') ? 'front' : 'back';
+    if (cnt(view) < cnt(best)){ view = best; setViewButtons(); draw(); }
+  }
+  paint();
+  const ids = [...prim, ...expand(e[4]).map(surfaceOf)].filter(id => id && PTS[view][id]);
+  zoomToParts(ids, 1.3, .16);
+  $('pillName').textContent = exHi; $('pill').hidden = false; setHint(''); updateBack();
+  setTimeout(() => showName('<span>Tap a highlighted muscle to see its name</span>'), 600);
+}
+
+// =====================================================================
+// 6. PROFILE
+// =====================================================================
+function profileMarkup(){
+  const total = Object.values(WEEK).reduce((a, b) => a + b, 0);
+  const low = Object.entries(WEEK).filter(([, v]) => v < 5).map(([g]) => GROUPS[g].name.toLowerCase());
+  const seg = (key, opts, cur) => `<div class="seg" data-seg="${key}">${opts.map(([v, l]) => `<button data-v="${v}" class="${v===cur?'on':''}">${l}</button>`).join('')}</div>`;
+  return `<div class="brand"><div class="logo">FIBRS</div></div>
+    <div class="p-top"><div class="p-title">Profile</div><button class="p-avatar" aria-label="Change profile photo">AK<span class="p-cam"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span></button></div>
+    <div class="p-card"><div class="p-name">Alex Kim</div><div class="p-sub">Member since March 2026 · Football, Running</div></div>
+    <div class="stats"><div class="stat"><b>3</b><span>workouts this week</span></div><div class="stat"><b>12</b><span>day streak</span></div><div class="stat"><b>${total}</b><span>sets this week</span></div></div>
+    <div class="panel"><h4>This week’s muscles</h4><div class="sub">Hard sets per muscle over the last 7 days. Sample data.</div>
+      <div class="minis"><figure><svg class="mini" id="miniF" viewBox="0 0 200 440" aria-label="Front view heat map"></svg><figcaption>FRONT</figcaption></figure>
+      <figure><svg class="mini" id="miniB" viewBox="0 0 200 440" aria-label="Back view heat map"></svg><figcaption>BACK</figcaption></figure></div>
+      <div class="readout" id="readout">Tap a muscle to see its sets</div>
+      <div class="scale"><i style="background:var(--muscle)"></i>0 <i style="background:var(--heat1)"></i>1–4 <i style="background:var(--heat2)"></i>5–9 <i style="background:var(--heat3)"></i>10+ sets</div>
+      <div class="insight">Research suggests about 10 or more hard sets per muscle each week gives the most growth (Schoenfeld et al., 2017). This week, your ${low.slice(0,3).join(', ')} are below 5 sets.</div></div>
+    <div class="set-list">
+      <div class="set"><span>Body model</span>${seg('sex', [['male','Male'],['female','Female']], sex)}</div>
+      <div class="set"><span>Appearance</span>${seg('look', [['system','Auto'],['light','Light'],['dark','Dark']], lookNow())}</div>
+      <div class="set"><span>Units</span>${seg('units', [['kg','kg'],['lb','lb']], 'kg')}</div>
+      <div class="set set-col"><div><span>Workouts</span><div class="set-sub">What the body map suggests first</div></div>${seg('kit', [['equip','Equipment'],['hybrid','Hybrid'],['body','Bodyweight']], kit)}</div>
+    </div>
+    <div class="set-list">
+      <div class="set"><span>My sports</span><span class="val">Football, Running ›</span></div>
+      <div class="set"><span>Main goal</span><span class="val">Prevent injuries ›</span></div>
+      <div class="set"><span>Training days</span><span class="val">Mon, Wed, Fri ›</span></div>
+      <div class="set"><span>Apple Health</span><span class="val ok">Connected</span></div>
+      <div class="set"><span>Reminders</span><span class="val">7:00 am ›</span></div>
+    </div>
+    <div class="set-list"><div class="set"><span>Privacy & data</span><span class="val">›</span></div><div class="set"><span>Help & feedback</span><span class="val">›</span></div></div>
+    <div class="p-foot">Fibrs · mockup v11</div>`;
+}
+function drawMinis(){
+  [['miniF','front'],['miniB','back']].forEach(([id, v]) => {
+    const el = $(id); if (!el) return;
+    el.innerHTML = bodyMarkup(v);
+    el.querySelectorAll('.grp').forEach(g => { const n = WEEK[g.dataset.g] || 0; g.classList.add(n >= 10 ? 'h3' : n >= 5 ? 'h2' : n >= 1 ? 'h1' : 'h0'); });
+  });
+}
+function pickHeat(g){
+  const n = WEEK[g] || 0, lvl = n >= 10 ? 'on target' : n >= 5 ? 'getting there' : n >= 1 ? 'below target' : 'not trained';
+  $('readout').innerHTML = `<b>${GROUPS[g].name}</b> · ${n} set${n === 1 ? '' : 's'} this week · ${lvl}`;
+  document.querySelectorAll('svg.mini .grp').forEach(x => x.classList.toggle('pick', x.dataset.g === g));
+}
+function showProfile(){ $('profile').innerHTML = profileMarkup(); $('profile').hidden = false; $('labels').innerHTML = ''; drawMinis(); setTab('tabProfile'); }
+function setTab(id){ ['tabBody','tabPlan','tabProfile'].forEach(t => $(t).classList.toggle('on', t === id)); if (id !== 'tabProfile') $('profile').hidden = true; }
+
+// Appearance
+function lookNow(){ const v = document.body.dataset.pal; return v === 'gold' ? 'dark' : v === 'emerald' ? 'light' : 'system'; }
+function setLook(v){
+  if (v === 'system') delete document.body.dataset.pal; else document.body.dataset.pal = v === 'dark' ? 'gold' : 'emerald';
+  try { localStorage.setItem('fibrs-look', v); } catch(e){}
+}
+try { const l = localStorage.getItem('fibrs-look'); if (l) setLook(l); } catch(e){}
+
+function setSex(s){
+  if (sex === s) return;
+  sex = s; buildAll(); draw();
+  document.querySelectorAll('[data-seg="sex"] button').forEach(b => b.classList.toggle('on', b.dataset.v === s));
+  if (exHi) applyEx(true); else if (sel) zoomToGroup(sel);
+  if (!$('profile').hidden) drawMinis();
+  toast(s === 'female' ? 'Showing female body' : 'Showing male body');
+}
+
+// =====================================================================
+// 7. SEARCH, TOASTS, EVENTS
+// =====================================================================
+function search(text){
+  const q = text.trim().toLowerCase();
+  $('clear').hidden = !q;
+  if (!q) return;
+  const sp = Object.keys(SPORTS).find(k => SPORTS[k].alias.some(a => a.startsWith(q) || q.startsWith(a)));
+  if (sp) return showSport(sp);
+  if (q.length < 3) return;
+  for (const [g, d] of Object.entries(GROUPS)){
+    if (d.name.toLowerCase().startsWith(q) || d.latin.toLowerCase().includes(q)){ sport = null; cameFromSport = false; return showGroup(g); }
+  }
+  for (const [id, x] of Object.entries(PART)){
+    if (x.name.toLowerCase().includes(q) && x.name.length > 6){ sport = null; cameFromSport = false; return showGroup(groupOf[id], id); }
+  }
+  sel = null; head = null; sport = null; exHi = null; draw(); setHint('');
+  const safe = text.trim().replace(/[<>&"]/g, '');
+  render(() => `<div class="eyebrow">Search</div><div class="title">“${safe}”</div>
+    <div class="empty">This isn't in the mockup yet. The finished app would cover hundreds of sports and every major muscle. Try one of these:</div>
+    <div class="chips" style="margin-top:14px">${Object.keys(SPORTS).map(k => `<button class="chip" data-s="${k}">${SPORTS[k].name}</button>`).join('')}</div>`);
+}
+function toast(msg){ const t = $('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('show'), 1700); }
+function updateCount(){ const n = progs.size + singles.size; $('count').textContent = n; $('count').hidden = !n; }
+
+$('chips').innerHTML = Object.keys(SPORTS).map(k => `<button class="chip" data-s="${k}">${SPORTS[k].name}</button>`).join('') + '<button class="chip" data-s="">+ More</button>';
+
+// With a workout picked, tapping a highlighted muscle or tendon fades its exact name in above the key
+let nameTimer;
+function showName(html){
+  const m = $('mname'); m.innerHTML = html;
+  m.style.bottom = ($('pill').hidden ? 14 : $('pill').offsetHeight + 20) + 'px';
+  m.classList.add('show'); clearTimeout(nameTimer); nameTimer = setTimeout(() => m.classList.remove('show'), 2800);
+}
+function nameTap(el, gid, pid){
+  const st = stateClasses(), role = {on: 'Main', soft: 'Also works', deep: 'Works underneath'};
+  if (pid && role[st.parts[pid]]){
+    let id = pid;
+    if (st.parts[pid] === 'deep'){ const e = LIB[exHi]; id = expand([...e[3], ...e[4]]).find(x => PART[x] && PART[x].deep && PART[x].under === pid) || pid; }
+    const P = PART[id], name = P ? P.name : GROUPS[groupOf[id]].name;
+    showName(`<b>${name}</b>${P && !P.deep ? ` <span>${P.latin}</span>` : ''} · <em>${role[st.parts[pid]]}</em>`);
+    return true;
+  }
+  if (el.classList.contains('td') && st.hot.has(gid)){ showName(`<b>${GROUPS[gid].isTendon ? GROUPS[gid].name : GROUPS[gid].name + ' tendon'}</b>`); return true; }
+  return false;
+}
+svg.addEventListener('click', e => {
+  const g = e.target.closest('.grp'); if (!g) return;
+  const gid = g.dataset.g, pid = e.target.dataset.p;
+  if (exHi && nameTap(e.target, gid, pid)) return;
+  if (!sel) cameFromSport = !!sport;
+  // First tap opens the muscle. Once it is open, tapping a part selects that part.
+  showGroup(gid, sel === gid && !exHi && pid && GROUPS[gid].parts.length > 1 ? pid : null);
+});
+svg.addEventListener('mouseover', e => {
+  const g = e.target.closest('.grp'), id = g && g.dataset.g;
+  svg.querySelectorAll('.grp').forEach(x => x.classList.toggle('hov', x.dataset.g === id));
+});
+svg.addEventListener('mouseleave', () => svg.querySelectorAll('.grp.hov').forEach(x => x.classList.remove('hov')));
+
+document.addEventListener('click', e => {
+  if (e.target.closest('.kit-btn')){ kitMenuOpen = !kitMenuOpen; refresh(); if (kitMenuOpen) liftCards(sheet.querySelector('.kit-wrap').closest('h3')); return; }
+  const kp = e.target.closest('[data-kit]');
+  if (kp){ kit = kp.dataset.kit; kitMenuOpen = false; refresh(); toast(kit === 'body' ? 'Showing bodyweight workouts first' : kit === 'hybrid' ? 'Mixing equipment and bodyweight' : 'Showing equipment workouts first'); return; }
+  if (kitMenuOpen && !e.target.closest('.kit-menu')){ kitMenuOpen = false; refresh(); }
+  const mg = e.target.closest('svg.mini .grp'); if (mg){ pickHeat(mg.dataset.g); return; }
+  const segB = e.target.closest('[data-seg] button');
+  if (segB){
+    const key = segB.parentElement.dataset.seg, v = segB.dataset.v;
+    if (key === 'sex') return setSex(v);
+    segB.parentElement.querySelectorAll('button').forEach(b => b.classList.toggle('on', b === segB));
+    if (key === 'look') setLook(v);
+    if (key === 'kit'){ kit = v; toast(v === 'body' ? 'Showing bodyweight workouts first' : v === 'hybrid' ? 'Mixing equipment and bodyweight' : 'Showing equipment workouts first'); }
+    if (key === 'lay'){ document.body.dataset.lay = v; refresh(); }
+    return;
+  }
+  const chip = e.target.closest('.chip');
+  if (chip){ if (chip.dataset.s){ $('q').value = SPORTS[chip.dataset.s].name; $('clear').hidden = false; showSport(chip.dataset.s); } else toast('More sports coming in the full app'); return; }
+  const h = e.target.closest('[data-head]'); if (h){ showGroup(sel, h.dataset.head || null); return; }
+  const f = e.target.closest('[data-focus]'); if (f){ cameFromSport = true; showGroup(f.dataset.focus); return; }
+  const pr = e.target.closest('[data-prog]');
+  if (pr){
+    const k = pr.dataset.prog;
+    if (progs.has(k)){ progs.delete(k); toast('Programme removed'); } else { progs.add(k); toast(SPORTS[k].program.name + ' added to My plan'); }
+    updateCount(); refresh(); return;
+  }
+  const a = e.target.closest('[data-add]');
+  if (a){
+    const id = a.dataset.add;
+    if (singles.has(id)){ singles.delete(id); toast('Removed from your plan'); } else { singles.add(id); toast('Added to your plan'); }
+    document.querySelectorAll('[data-add]').forEach(b => { if (b.dataset.add === id){ b.classList.toggle('on', singles.has(id)); b.textContent = singles.has(id) ? '✓' : '+'; } });
+    updateCount(); return;
+  }
+  const ex = e.target.closest('[data-ex]');
+  if (ex){ exHi = exHi === ex.dataset.ex ? null : ex.dataset.ex; applyEx(); if (exHi && sheet.contains(ex)) liftCards(ex); return; }
+});
+document.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[data-focus],[data-ex],#avatarBtn')){ e.preventDefault(); e.target.click(); } });
+$('pillX').onclick = () => { exHi = null; applyEx(); };
+$('backBtn2').onclick = () => $('backBtn').click();
+$('avatarBtn').onclick = showProfile;
+$('backBtn').onclick = () => {
+  if (exHi){ exHi = null; return applyEx(); }
+  if (sel && head) return showGroup(sel, null);
+  if (cameFromSport && sport) return showSport(sport);
+  reset();
+};
+$('vFront').onclick = () => { if (!exHi && sel && groupView(sel) === 'back') reset(); setView('front'); };
+$('vBack').onclick = () => { if (!exHi && sel && groupView(sel) === 'front') reset(); setView('back'); };
+$('q').addEventListener('input', e => { setTab('tabBody'); if (!e.target.value.trim()) reset(); search(e.target.value); });
+$('clear').onclick = () => { $('q').value = ''; $('clear').hidden = true; reset(); };
+$('tabPlan').onclick = () => {
+  setTab('tabPlan'); sel = null; head = null; sport = null; exHi = null; clearSearch(); $('pill').hidden = true; $('backBtn').hidden = $('backBtn2').hidden = true; $('legend').hidden = true;
+  draw(); zoomTo(FULL); setHint(''); render(planSheet);
+};
+$('tabBody').onclick = () => { setTab('tabBody'); reset(); };
+$('tabProfile').onclick = showProfile;
+
+addEventListener('resize', () => relabel(150));
+// The fade under the fixed strip only shows once the panel has scrolled
+sheet.addEventListener('scroll', () => sheet.classList.toggle('scrolled', sheet.scrollTop > 2));
+{ const l = new URLSearchParams(location.search).get('layout'); if (['std','desc','tendon'].includes(l)){ document.body.dataset.lay = l; document.querySelectorAll('[data-seg="lay"] button').forEach(b => b.classList.toggle('on', b.dataset.v === l)); } }
+buildAll(); draw();
+</script>

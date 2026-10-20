@@ -64,4 +64,4 @@ If your tool can't spawn subagents, take on that role yourself, do the task, the
 
 When I say "remember …", add a one-line entry below.
 
-- `<empty>`
+- Always run the design-critic automatically after every design change (new mockup or edit), and show its verdict together with the screenshots.
