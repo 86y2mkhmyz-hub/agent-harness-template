@@ -41,6 +41,7 @@ If your tool can't spawn subagents, take on that role yourself, do the task, the
 
 | Subagent | Use when | File |
 |---|---|---|
+| `design-critic` | Review any mockup or screen design (runs automatically after each `feature-planner` mockup) | `agents/design-critic.md` |
 | `critic` (example) | Review any draft, plan or idea | `agents/critic.md` |
 | `researcher` (example) | Find current facts + sources on a topic | `agents/researcher.md` |
 | `writer` (example) | Turn notes into a finished text | `agents/writer.md` |
