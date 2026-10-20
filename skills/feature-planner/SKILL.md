@@ -19,7 +19,8 @@ A plain-English feature plan plus mockups the user approves before any code is w
    - **Small edits** (colours, text, spacing, one element) → quick picture mockup: a single static screen (HTML, or a PNG screenshot of it). Number versions `-v2`, `-v3`…
    - Update the plan to match after each round.
 5. **Final look.** Once the user is happy with all edits, make one final clickable mockup with every change applied: `output/mockups/<feature-slug>-final.html`.
-6. **Ask:** "Shall I start building this?" Only start if the user says yes. Never spend money or publish anything without asking.
+6. **Design review on every mockup.** After each mockup in steps 3-5, run the `design-critic` subagent (`agents/design-critic.md`) on it. Show the user the mockup and the critic's verdict + top 3 fixes side by side, and let them pick which fixes to make. Don't apply fixes on your own.
+7. **Ask:** "Shall I start building this?" Only start if the user says yes. Never spend money or publish anything without asking.
 
 ## Design standards (every mockup)
 
