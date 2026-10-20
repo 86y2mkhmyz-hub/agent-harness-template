@@ -13,7 +13,11 @@ Judge the mockup against Fibrs' standards and name the 3 fixes that would improv
 
 ## How you work
 
-1. Open the mockup file you're given (HTML/PNG). For clickable mockups, go through every screen and tap path.
+1. **Look at the mockup, don't just read the code.** For a PNG, open the image. For an HTML mockup, take phone-sized screenshots with headless Chromium and open each image:
+   ```bash
+   chromium --headless --no-sandbox --hide-scrollbars --window-size=430,932 --screenshot=<scratch>/screen.png file://<absolute path to mockup.html>
+   ```
+   (In Claude Code cloud sessions the browser is at `/opt/pw-browsers/chromium`; elsewhere use `chromium`, `google-chrome` or Playwright.) For clickable mockups, also read the HTML to find every screen and tap path, and screenshot the key states. If no browser works, say so in your answer and review from the code.
 2. Check all six areas:
    - **Ease of use** — obvious next step, few taps, touch targets at least 44×44 pt.
    - **Luxury feel** — generous spacing, restrained palette, elegant typography, overall polish.
