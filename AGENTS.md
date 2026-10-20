@@ -50,6 +50,8 @@ If your tool can't spawn subagents, take on that role yourself, do the task, the
 
 | Workflow | Use when | File |
 |---|---|---|
+| `feature-brief` | Take a feature idea all the way to an approved mockup + a one-page PDF brief to share | `workflows/feature-brief.md` |
+| `competitor-check` | See how top fitness apps handle a feature and how Fibrs can stand out | `workflows/competitor-check.md` |
 | `research-and-write` (example) | Researched article, post or briefing on a topic | `workflows/research-and-write.md` |
 
 ## 7. Rules
