@@ -184,7 +184,7 @@ svg.dim .grp:not(.hot){opacity:.38}
 .phone.open.mini .sheet{height:172px}
 .sheet.drag{transition:none}
 .sheet::after{content:"";position:absolute;left:0;right:0;bottom:0;height:120px;pointer-events:none;z-index:2;background:linear-gradient(to bottom,transparent,color-mix(in srgb,var(--surface) 80%,transparent) 45%,var(--surface) 72%)}
-.sheet-ctl{position:absolute;top:30px;right:16px;display:flex;align-items:center;gap:8px;z-index:3}
+.sheet-ctl{position:absolute;top:30px;right:16px;display:flex;align-items:center;gap:8px;z-index:4}
 .sheet-ctl .segctl{width:150px;height:36px}
 .sheet-ctl .segctl button{font-size:13px}
 .ctl-back{position:relative;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--surface2);color:var(--text);display:grid;place-items:center;cursor:pointer;flex:none}
@@ -194,7 +194,7 @@ svg.dim .grp:not(.hot){opacity:.38}
 /* Back arrow: a plain chevron to the left of the eyebrow word, same colour */
 .sheet-body.scrolled > .eyebrow:first-child::after{opacity:1}
 
-.grabzone{position:relative;z-index:2;flex:none;height:26px;display:flex;justify-content:center;padding-top:8px;cursor:grab;touch-action:none}
+.grabzone{position:relative;z-index:3;flex:none;height:26px;display:flex;justify-content:center;padding-top:8px;cursor:grab;touch-action:none}
 /* Invisible grab area: 44pt tall, sits under the back button and switch so they still win */
 .grabzone::after{content:"";position:absolute;left:0;right:0;top:0;height:44px}
 .grab{width:56px;height:6px;border-radius:3px;background:var(--faint);opacity:.7}
